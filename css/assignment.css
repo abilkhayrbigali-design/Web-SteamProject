@@ -1,0 +1,132 @@
+/* Assignment 2: shared Flexbox and Grid rules used by all eight pages.
+   style.css keeps the original theme; this file integrates the team layouts. */
+
+/* Task 3: named Grid areas; header/footer span both columns. */
+.page-layout {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: "header header" "sidebar main" "footer footer";
+    min-height: 100vh;
+}
+.page-layout > header { grid-area: header; }
+.page-sidebar { grid-area: sidebar; }
+.page-main { grid-area: main; min-width: 0; }
+.page-layout > footer { grid-area: footer; }
+.content-section { width: 100%; }
+
+/* Task 1: horizontal, vertically centered navigation with consistent gaps. */
+.navbar { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.logo { flex-shrink: 0; }
+.nav-menu { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px 15px; }
+.nav-menu a[aria-current="page"] { box-shadow: 0 2px var(--accent); }
+.page-sidebar { padding: 28px 18px; border-right: 1px solid var(--line); background: var(--surface); }
+.page-sidebar h2 { margin-bottom: 18px; color: var(--accent); font-size: 1.2rem; }
+.sidebar-links { display: flex; flex-direction: column; gap: 8px; list-style: none; }
+.sidebar-links a { display: block; padding: 10px 12px; border-radius: 4px; color: var(--soft); text-decoration: none; }
+.sidebar-links a:hover { background: var(--surface-light); color: var(--accent); }
+.sidebar-note { margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+
+/* Task 2: equal-height Flexbox cards and buttons aligned along the bottom. */
+.card-row, .team-grid, .news-grid { display: flex; flex-wrap: wrap; align-items: stretch; gap: 24px; }
+.card-row > .game-card, .team-grid > .team-card {
+    display: flex; flex-direction: column; flex: 0 1 calc((100% - 72px) / 4); min-width: 0;
+}
+.catalogue-cards > .game-card, .news-grid > .news-card { flex: 0 1 calc((100% - 48px) / 3); min-width: 0; }
+.game-card > img { flex-shrink: 0; }
+.card-row .card-content { display: flex; flex-direction: column; flex: 1; align-items: flex-start; }
+.card-row .price { display: block; margin-bottom: 18px; }
+.card-action { margin-top: auto; padding: 10px 14px; font-size: .875rem; text-align: center; }
+.card-row .game-card:hover, .card-row .game-card:focus-within, .news-card:focus-within {
+    transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 8px 22px rgba(0,0,0,.25);
+}
+.game-card:target { border-color: var(--accent); }
+.team-card { align-items: center; padding: 24px 16px; }
+.profile-img { flex-shrink: 0; }
+.team-role { margin-top: auto; }
+.genre-card, .stat-card { display: flex; flex-direction: column; }
+.genre-card p { flex: 1; }
+.news-meta { flex-wrap: wrap; gap: 8px 14px; }
+
+/* Task 4: nine images in equal Grid cells, with hover and keyboard captions. */
+.about-gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: 24px; }
+.about-gallery-item {
+    position: relative; min-width: 0; margin: 0; aspect-ratio: 4 / 3; overflow: hidden;
+    border: 1px solid var(--line); border-radius: 6px;
+    background: linear-gradient(145deg, var(--surface-light), var(--page));
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+.about-gallery-item img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.about-gallery-item figcaption {
+    position: absolute; inset: auto 0 0; padding: 26px 16px 14px;
+    background: linear-gradient(transparent, rgba(16,24,32,.97) 45%); color: var(--text);
+    font-weight: 700; opacity: 0; transform: translateY(8px);
+    transition: opacity .2s ease, transform .2s ease;
+}
+.about-gallery-item:hover, .about-gallery-item:focus-visible { border-color: var(--accent); box-shadow: 0 8px 22px rgba(0,0,0,.25); }
+.about-gallery-item:hover figcaption, .about-gallery-item:focus-visible figcaption { opacity: 1; transform: translateY(0); }
+
+/* Part 3: consistent spacing, accessible interaction, responsive components. */
+.page-main [id] { scroll-margin-top: 24px; }
+.page-main { overflow-wrap: anywhere; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.skip-link { position: fixed; top: 10px; left: 10px; z-index: 10; padding: 12px 18px; background: var(--surface); color: var(--accent); transform: translateY(-160%); }
+.skip-link:focus { transform: translateY(0); }
+.main-button { color: #071d2c; }
+.contact-container { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: 30px; padding: 30px; }
+.contact-form, .form-group, .newsletter-text { min-width: 0; }
+.newsletter-form { flex-wrap: wrap; min-width: 0; flex: 1 0 300px; }
+.newsletter-form input { flex: 1 1 180px; min-width: 0; }
+.newsletter-form .form-status { flex-basis: 100%; }
+.form-status { color: var(--accent); font-size: .9rem; }
+.form-status:empty { display: none; }
+.demo-note { margin-top: 16px !important; font-size: .85rem; }
+.news-hero-card { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); }
+.community-layout { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+.table-responsive { max-width: 100%; }
+
+@media (max-width: 1200px) {
+    .card-row > .game-card, .team-grid > .team-card, .news-grid > .news-card { flex-basis: calc((100% - 24px) / 2); }
+    .contact-container, .news-hero-card, .community-layout { grid-template-columns: minmax(0, 1fr); }
+    .categories-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .newsletter-box { flex-direction: column; align-items: stretch; }
+    .newsletter-form { flex-basis: auto; }
+}
+@media (max-width: 1000px) {
+    .navbar { flex-direction: column; }
+    .nav-menu { justify-content: center; }
+    .about-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+    .page-layout { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto 1fr auto; grid-template-areas: "header" "sidebar" "main" "footer"; }
+    .page-sidebar { padding: 18px 20px; border-right: 0; border-bottom: 1px solid var(--line); }
+    .page-sidebar h2 { margin-bottom: 8px; }
+    .sidebar-links { flex-direction: row; flex-wrap: wrap; gap: 4px; }
+    .sidebar-note { display: none; }
+    .content-section { padding: 32px 20px; }
+    .page-banner { padding: 50px 20px; }
+    .contact-container { padding: 20px; }
+}
+@media (max-width: 620px) {
+    .card-row > .game-card, .team-grid > .team-card, .news-grid > .news-card { flex-basis: 100%; }
+    .categories-grid { grid-template-columns: minmax(0, 1fr); }
+    .card-action { align-self: stretch; }
+    .navbar { gap: 12px; }
+    .nav-menu { gap: 4px 14px; }
+    .newsletter-form input { flex-basis: auto; }
+    .newsletter-box, .news-hero-body { padding: 20px; }
+}
+@media (max-width: 480px) { .about-gallery { grid-template-columns: minmax(0, 1fr); } }
+@media (hover: none), (max-width: 700px) { .about-gallery-item figcaption { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+    .game-card:hover, .game-card:focus-within, .news-card:hover, .news-card:focus-within,
+    .team-card:hover, .genre-card:hover, .stat-card:hover, .main-button:hover, .discussion-item:hover { transform: none; }
+}
+
+/* Official cover artwork: preserve the complete image and game logo. */
+.card-row .game-card > img { height: 180px; aspect-ratio: auto; object-fit: contain; background: #101820; }
+
+/* Preserve the existing Dota 2 image and its original presentation. */
+.card-row .game-card > .original-dota-art { height: 180px; aspect-ratio: auto; object-fit: cover; }

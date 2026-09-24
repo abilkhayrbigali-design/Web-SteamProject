@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <!-- Team: Eggs | Group: SE-2507 -->
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="Steam Game Hub student website for discovering games and genres." name="description"/>
+  <title>
+   Steam Game Hub - Home
+  </title>
+  <link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23171d25'/%3E%3Ctext x='18' y='44' fill='%2366c0f4' font-size='38' font-family='Arial'%3ES%3C/text%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/>
+  <link href="css/style.css" rel="stylesheet"/>
+  <link href="css/assignment.css" rel="stylesheet"/>
+ </head>
+ <body class="page-layout">
+  <a class="skip-link" href="#main-content">
+   Skip to main content
+  </a>
+  <header id="main-header">
+   <!-- Assignment 2, Task 1: Flexbox navigation. -->
+   <nav aria-label="Main navigation" class="navbar">
+    <a class="logo" href="index.html">
+     STEAM GAME HUB
+    </a>
+    <ul class="nav-menu">
+     <li>
+      <a aria-current="page" class="active" href="index.html">
+       Home
+      </a>
+     </li>
+     <li>
+      <a href="featured.html">
+       Featured Games
+      </a>
+     </li>
+     <li>
+      <a href="games.html">
+       Games
+      </a>
+     </li>
+     <li>
+      <a href="categories.html">
+       Categories
+      </a>
+     </li>
+     <li>
+      <a href="news.html">
+       News
+      </a>
+     </li>
+     <li>
+      <a href="community.html">
+       Community
+      </a>
+     </li>
+     <li>
+      <a href="about.html">
+       About
+      </a>
+     </li>
+     <li>
+      <a href="contact.html">
+       Contact
+      </a>
+     </li>
+    </ul>
+   </nav>
+  </header>
+  <aside aria-labelledby="sidebar-title" class="page-sidebar">
+   <h2 id="sidebar-title">
+    Explore the hub
+   </h2>
+   <nav aria-label="Page sections">
+    <ul class="sidebar-links">
+     <li>
+      <a href="#welcome">
+       Welcome
+      </a>
+     </li>
+     <li>
+      <a href="#featured-games">
+       Featured games
+      </a>
+     </li>
+     <li>
+      <a href="#why-visit">
+       Why visit?
+      </a>
+     </li>
+     <li>
+      <a href="about.html#game-gallery">
+       Discover the gallery
+      </a>
+     </li>
+    </ul>
+   </nav>
+   <div class="sidebar-note">
+    <p class="subtitle">
+     TEAM EGGS
+    </p>
+    <p>
+     Web Technologies I
+     <br/>
+     SE-2507
+    </p>
+   </div>
+  </aside>
+  <main class="page-main" id="main-content" tabindex="-1">
+   <section class="hero">
+    <div class="hero-content">
+     <p class="subtitle">
+      WELCOME TO STEAM GAME HUB
+     </p>
+     <h1>
+      Discover Your Next Game
+     </h1>
+     <p>
+      Explore popular games, exciting adventures, and new experiences for every type of gamer.
+     </p>
+     <a class="main-button" href="featured.html">
+      Explore Games
+     </a>
+    </div>
+   </section>
+   <section class="content-section" id="welcome">
+    <h2>
+     Welcome to Steam Game Hub
+    </h2>
+    <p>
+     Steam Game Hub is a student web project created for the Web Technologies I course.
+    </p>
+    <p>
+     Our website brings together a selection of popular games and information about different genres and gaming experiences.
+    </p>
+   </section>
+   <section class="content-section" id="featured-games">
+    <h2>
+     Featured Games
+    </h2>
+    <!-- Assignment 2, Task 2: responsive Flexbox cards. -->
+    <div class="card-row">
+     <article class="game-card">
+      <img alt="Counter-Strike 2 - official Steam cover artwork" height="215" src="images/games/counter-strike-2.jpg" width="460"/>
+      <div class="card-content">
+       <h3>
+        Counter-Strike 2
+       </h3>
+       <p class="game-genre">
+        Shooter
+       </p>
+       <p>
+        A competitive multiplayer first-person shooter focused on teamwork and strategy.
+       </p>
+       <span class="price">
+        Free
+       </span>
+       <a aria-label="Explore Counter-Strike 2" class="secondary-button card-action" href="featured.html#counter-strike-2">
+        Explore game
+       </a>
+      </div>
+     </article>
+     <article class="game-card">
+      <img alt="Grand Theft Auto V - official Steam cover artwork" height="215" src="images/games/grand-theft-auto-v.jpg" width="460"/>
+      <div class="card-content">
+       <h3>
+        Grand Theft Auto V
+       </h3>
+       <p class="game-genre">
+        Action
+       </p>
+       <p>
+        Explore a large open world filled with missions, vehicles, and activities.
+       </p>
+       <span class="price">
+        $29.99
+       </span>
+       <a aria-label="Explore Grand Theft Auto V" class="secondary-button card-action" href="featured.html#grand-theft-auto-v">
+        Explore game
+       </a>
+      </div>
+     </article>
+     <article class="game-card">
+      <img alt="Dota 2 game artwork" class="original-dota-art" height="500" src="images/about-gallery/dota2.jpg" width="800"/>
+      <div class="card-content">
+       <h3>
+        Dota 2
+       </h3>
+       <p class="game-genre">
+        MOBA
+       </p>
+       <p>
+        A competitive strategy game where teams fight to destroy the enemy base.
+       </p>
+       <span class="price">
+        Free
+       </span>
+       <a aria-label="Explore Dota 2" class="secondary-button card-action" href="featured.html#dota-2">
+        Explore game
+       </a>
+      </div>
+     </article>
+     <article class="game-card">
+      <img alt="Cyberpunk 2077 - official Steam cover artwork" height="215" src="images/games/cyberpunk-2077.jpg" width="460"/>
+      <div class="card-content">
+       <h3>
+        Cyberpunk 2077
+       </h3>
+       <p class="game-genre">
+        RPG
+       </p>
+       <p>
+        Experience a futuristic open-world adventure in Night City.
+       </p>
+       <span class="price">
+        $59.99
+       </span>
+       <a aria-label="Explore Cyberpunk 2077" class="secondary-button card-action" href="featured.html#cyberpunk-2077">
+        Explore game
+       </a>
+      </div>
+     </article>
+    </div>
+   </section>
+   <section class="content-section boxed-section" id="why-visit">
+    <h2>
+     Why Visit Our Game Hub?
+    </h2>
+    <ul class="feature-list">
+     <li>
+      Discover popular games
+     </li>
+     <li>
+      Explore different game genres
+     </li>
+     <li>
+      Find interesting gaming experiences
+     </li>
+     <li>
+      Learn about upcoming games
+     </li>
+    </ul>
+   </section>
+  </main>
+  <footer>
+   <p>
+    Steam Game Hub — Web Technologies I
+   </p>
+   <p>
+    Team Eggs | SE-2507
+   </p>
+   <p>
+    Team Members: Ташкенбаев Нурсултан, Бигали Абулхаир, Султанкулов Шынгыс, Лопаткин Артем
+   </p>
+  </footer>
+ </body>
+</html>

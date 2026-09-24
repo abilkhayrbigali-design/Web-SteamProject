@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <!-- Team: Eggs | Group: SE-2507 -->
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="Steam Game Hub featured games selection." name="description"/>
+  <title>
+   Steam Game Hub - Featured Games
+  </title>
+  <link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23171d25'/%3E%3Ctext x='18' y='44' fill='%2366c0f4' font-size='38' font-family='Arial'%3ES%3C/text%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/>
+  <link href="css/style.css" rel="stylesheet"/>
+  <link href="css/assignment.css" rel="stylesheet"/>
+ </head>
+ <body class="page-layout">
+  <a class="skip-link" href="#main-content">
+   Skip to main content
+  </a>
+  <header id="main-header">
+   <!-- Assignment 2, Task 1: Flexbox navigation. -->
+   <nav aria-label="Main navigation" class="navbar">
+    <a class="logo" href="index.html">
+     STEAM GAME HUB
+    </a>
+    <ul class="nav-menu">
+     <li>
+      <a href="index.html">
+       Home
+      </a>
+     </li>
+     <li>
+      <a aria-current="page" class="active" href="featured.html">
+       Featured Games
+      </a>
+     </li>
+     <li>
+      <a href="games.html">
+       Games
+      </a>
+     </li>
+     <li>
+      <a href="categories.html">
+       Categories
+      </a>
+     </li>
+     <li>
+      <a href="news.html">
+       News
+      </a>
+     </li>
+     <li>
+      <a href="community.html">
+       Community
+      </a>
+     </li>
+     <li>
+      <a href="about.html">
+       About
+      </a>
+     </li>
+     <li>
+      <a href="contact.html">
+       Contact
+      </a>
+     </li>
+    </ul>
+   </nav>
+  </header>
+  <aside aria-labelledby="sidebar-title" class="page-sidebar">
+   <h2 id="sidebar-title">
+    Featured games
+   </h2>
+   <nav aria-label="Page sections">
+    <ul class="sidebar-links">
+     <li>
+      <a href="#popular-games">
+       Popular games
+      </a>
+     </li>
+     <li>
+      <a href="#popular-genres">
+       Popular genres
+      </a>
+     </li>
+     <li>
+      <a href="about.html#game-gallery">
+       Discover the gallery
+      </a>
+     </li>
+    </ul>
+   </nav>
+   <div class="sidebar-note">
+    <p class="subtitle">
+     TEAM EGGS
+    </p>
+    <p>
+     Web Technologies I
+     <br/>
+     SE-2507
+    </p>
+   </div>
+  </aside>
+  <main class="page-main" id="main-content" tabindex="-1">
+   <section class="page-banner">
+    <p class="subtitle">
+     EXPLORE OUR COLLECTION
+    </p>
+    <h1>
+     Featured Games
+    </h1>
+    <p>
+     Check out some of the games selected by Steam Game Hub.
+    </p>
+   </section>
+   <section class="content-section" id="popular-games">
+    <h2>
+     Popular Games
+    </h2>
+    <!-- Assignment 2, Task 2: responsive Flexbox cards. -->
+    <div class="card-row">
+     <article class="game-card" id="counter-strike-2">
+      <img alt="Counter-Strike 2 - official Steam cover artwork" height="215" src="images/games/counter-strike-2.jpg" width="460"/>
+      <div class="card-content">
+       <h3>
+        Counter-Strike 2
+       </h3>
+       <p class="game-genre">
+        Shooter
+       </p>
+       <p>
+        A competitive tactical shooter based on teamwork and strategy.
+       </p>
+       <span class="price">
+        Free
+       </span>
+       <a aria-label="Browse the game catalogue after Counter-Strike 2" class="secondary-button card-action" href="games.html">
+        View catalogue
+       </a>
+      </div>
+     </article>
+     <article class="game-card" id="grand-theft-auto-v">
+      <img alt="Grand Theft Auto V - official Steam cover artwork" height="215" src="images/games/grand-theft-auto-v.jpg" width="460"/>
+      <div class="card-content">
+       <h3>
+        Grand Theft Auto V
+       </h3>
+       <p class="game-genre">
+        Action
+       </p>
+       <p>
+        An open-world action game with missions and exploration.
+       </p>
+       <span class="price">
+        $29.99
+       </span>
+       <a aria-label="Browse the game catalogue after Grand Theft Auto V" class="secondary-button card-action" href="games.html">
+        View catalogue
+       </a>
+      </div>
+     </article>
+     <article class="game-card" id="dota-2">
+      <img alt="Dota 2 game artwork" class="original-dota-art" height="500" src="images/about-gallery/dota2.jpg" width="800"/>
+      <div class="card-content">
+       <h3>
+        Dota 2
+       </h3>
+       <p class="game-genre">
+        MOBA
+       </p>
+       <p>
+        A multiplayer strategy game featuring team-based battles.
+       </p>
+       <span class="price">
+        Free
+       </span>
+       <a aria-label="Browse the game catalogue after Dota 2" class="secondary-button card-action" href="games.html">
+        View catalogue
+       </a>
+      </div>
+     </article>
+     <article class="game-card" id="cyberpunk-2077">
+      <img alt="Cyberpunk 2077 - official Steam cover artwork" height="215" src="images/games/cyberpunk-2077.jpg" width="460"/>
+      <div class="card-content">
+       <h3>
+        Cyberpunk 2077
+       </h3>
+       <p class="game-genre">
+        RPG
+       </p>
+       <p>
+        A futuristic open-world RPG set in Night City.
+       </p>
+       <span class="price">
+        $59.99
+       </span>
+       <a aria-label="Browse the game catalogue after Cyberpunk 2077" class="secondary-button card-action" href="games.html">
+        View catalogue
+       </a>
+      </div>
+     </article>
+     <article class="game-card" id="elden-ring">
+      <img alt="Elden Ring - official Steam cover artwork" height="215" src="images/games/elden-ring.jpg" width="460"/>
+      <div class="card-content">
+       <h3>
+        Elden Ring
+       </h3>
+       <p class="game-genre">
+        Action RPG
+       </p>
+       <p>
+        Explore a vast fantasy world, defeat enemies, and discover secrets.
+       </p>
+       <span class="price">
+        $59.99
+       </span>
+       <a aria-label="Browse the game catalogue after Elden Ring" class="secondary-button card-action" href="games.html">
+        View catalogue
+       </a>
+      </div>
+     </article>
+     <article class="game-card" id="red-dead-redemption-2">
+      <img alt="Red Dead Redemption 2 - official Steam cover artwork" height="215" src="images/games/red-dead-redemption-2.jpg" width="460"/>
+      <div class="card-content">
+       <h3>
+        Red Dead Redemption 2
+       </h3>
+       <p class="game-genre">
+        Adventure
+       </p>
+       <p>
+        Experience an open-world western adventure with a detailed story.
+       </p>
+       <span class="price">
+        $59.99
+       </span>
+       <a aria-label="Browse the game catalogue after Red Dead Redemption 2" class="secondary-button card-action" href="games.html">
+        View catalogue
+       </a>
+      </div>
+     </article>
+     <article class="game-card" id="hogwarts-legacy">
+      <img alt="Hogwarts Legacy - official Steam cover artwork" height="215" src="images/games/hogwarts-legacy.jpg" width="460"/>
+      <div class="card-content">
+       <h3>
+        Hogwarts Legacy
+       </h3>
+       <p class="game-genre">
+        Adventure RPG
+       </p>
+       <p>
+        Explore a magical world and experience life as a student wizard.
+       </p>
+       <span class="price">
+        $49.99
+       </span>
+       <a aria-label="Browse the game catalogue after Hogwarts Legacy" class="secondary-button card-action" href="games.html">
+        View catalogue
+       </a>
+      </div>
+     </article>
+     <article class="game-card" id="baldurs-gate-3">
+      <img alt="Baldur's Gate 3 - official Steam cover artwork" height="215" src="images/games/baldurs-gate-3.jpg" width="460"/>
+      <div class="card-content">
+       <h3>
+        Baldur's Gate 3
+       </h3>
+       <p class="game-genre">
+        RPG
+       </p>
+       <p>
+        Build your character and explore an adventure-driven fantasy world.
+       </p>
+       <span class="price">
+        $59.99
+       </span>
+       <a aria-label="Browse the game catalogue after Baldur's Gate 3" class="secondary-button card-action" href="games.html">
+        View catalogue
+       </a>
+      </div>
+     </article>
+    </div>
+   </section>
+   <section class="content-section boxed-section" id="popular-genres">
+    <h2>
+     Popular Genres
+    </h2>
+    <ol class="genre-list">
+     <li>
+      Action
+     </li>
+     <li>
+      RPG
+     </li>
+     <li>
+      Shooter
+     </li>
+     <li>
+      Adventure
+     </li>
+     <li>
+      Strategy
+     </li>
+    </ol>
+   </section>
+  </main>
+  <footer>
+   <p>
+    Steam Game Hub — Web Technologies I
+   </p>
+   <p>
+    Team Eggs | SE-2507
+   </p>
+   <p>
+    Team Members: Ташкенбаев Нурсултан, Бигали Абулхаир, Султанкулов Шынгыс, Лопаткин Артем
+   </p>
+  </footer>
+ </body>
+</html>
