@@ -1,0 +1,20 @@
+Steam Game Hub - Team Eggs - SE-2507 - Final Project
+
+GitHub Repository: https://github.com/chinusoid/Web-SteamProject
+Live Website: https://chinusoid.github.io/Web-SteamProject/
+Final Release (all three submission files): https://github.com/chinusoid/Web-SteamProject/releases/tag/v2.0.0-final
+
+Project ZIP: https://github.com/chinusoid/Web-SteamProject/releases/download/v2.0.0-final/SteamGameHub_SE2507_FinalProject.zip
+PDF Report: https://github.com/chinusoid/Web-SteamProject/releases/download/v2.0.0-final/SteamGameHub_SE2507_Report.pdf
+Links TXT: https://github.com/chinusoid/Web-SteamProject/releases/download/v2.0.0-final/SteamGameHub_SE2507_Links.txt
+
+Create Account: https://chinusoid.github.io/Web-SteamProject/community.html#join-community
+Log In: https://chinusoid.github.io/Web-SteamProject/login.html
+Profile: https://chinusoid.github.io/Web-SteamProject/profile.html
+Live Giveaways (API): https://chinusoid.github.io/Web-SteamProject/giveaways.html
+Presentation Notes: https://github.com/chinusoid/Web-SteamProject/blob/main/docs/final/Presentation_Notes.txt
+Backup Screenshots: https://github.com/chinusoid/Web-SteamProject/tree/main/docs/final/screenshots
+Requirements Map: https://github.com/chinusoid/Web-SteamProject/blob/main/docs/final/Requirements_Matrix.txt
+
+Submission: Each student uploads the ZIP project, PDF report and TXT links together in the Moodle FINAL EXAM folder. Publishing the website does not submit it to Moodle.
+Demo accounts are stored in the browser where created. Register with sample details; no test account is pre-seeded.

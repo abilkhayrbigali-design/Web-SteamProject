@@ -1,0 +1,332 @@
+{
+  "date": "2026-11-16T05:34:50.721859+00:00",
+  "url": "https://chinusoid.github.io/Web-SteamProject/",
+  "commit": "714f40dc923005aadbd8fc1d0c8d925fe1b2e108",
+  "workflow": "https://github.com/chinusoid/Web-SteamProject/actions/runs/43810912185",
+  "files": [
+    {
+      "file": "about.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "878fdc88be53ac7bb74f21a82b86952de19c76d390b86f3d9ce59b124ef08451"
+    },
+    {
+      "file": "categories.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "9ff2fcf9c59eb6ecdd9dd08ad8549939dafd6d7f66c413f6fdb18490bbf24a8d"
+    },
+    {
+      "file": "community.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "f26612e8a328074640e5928dd41953643e7b757c8d54eaa1110aa4f16f08ade0"
+    },
+    {
+      "file": "contact.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "4e2526b2e149fb5e699289216799d89aa58de7a9e14f89d248a4a6333e1a78d0"
+    },
+    {
+      "file": "featured.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "2b0749afa19f3695db351f304233b4e615d7548a9be60101cb63150ab75bf341"
+    },
+    {
+      "file": "games.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "a94027d3682c53f26a56fb258d69a8d90a99f67e7f29afb52fa5ce5ca17dfd60"
+    },
+    {
+      "file": "giveaways.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "0046b8a067496d883e6b232025429f98341db8d99e79b0a4c0085e91ef8bd782"
+    },
+    {
+      "file": "index.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "570be9f0d09b13cc93dcb0631b613e2074a640ca0b2ae012df4a28ead86fe802"
+    },
+    {
+      "file": "library.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "a2078522c1be27fe8fc6d184a605d6b1f2f8a99e633f11243c0531f199a9a6c7"
+    },
+    {
+      "file": "login.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "69733bcbec7180510585fc457f9193b2b49eeed1df243850886374c76d37dd70"
+    },
+    {
+      "file": "news.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "db149433700d39e0da960fe1dbb0b63f5a9de7dcc7a198d3a2d1b6cd27c44f8e"
+    },
+    {
+      "file": "profile.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "20fcfb14886e5db838f64fff9c1fe5186e1587a7f6a9d9843fa7185a05f898f3"
+    },
+    {
+      "file": "responsive.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "213a354a117905a310232bcb3d999059e0aff36cb0c65deb8c784e754f906422"
+    },
+    {
+      "file": "js/assignment5.js",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "5bbb37aef8c55d867c1cb80b405e13f0dd5110245714fee720c32657dffdffd2"
+    },
+    {
+      "file": "js/auth.js",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "824ee792687d8979de70e0cbd661faf43269c8cb4fafbb4f8170fbb529fbdfc7"
+    },
+    {
+      "file": "js/final.js",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "2ecfc0ee149fa52db30c0ee22f332b51a28afe44bbc6b475e22e8fe856de6e7a"
+    },
+    {
+      "file": "js/games-data.js",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "bf7dc88ccfb2bd76990cfe4991c2c91d3e4b4655a2ca008ffba8f5263bd99445"
+    },
+    {
+      "file": "js/site.js",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "e5e73f0aea3b38f9d0cd86a040eb3a2406440f638d4e45e03eac9ebe671ab6d9"
+    },
+    {
+      "file": "js/theme-init.js",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "957a1d2225859f4ce64d8e952ff8bed1c1945744c6b29a0790d975ffd09b171c"
+    },
+    {
+      "file": "css/final.css",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "7f001235a1a5d93fc90146135bc4417ed6ba330fab137096c954febb988ce247"
+    },
+    {
+      "file": "css/responsive.css",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "0f92fc5474fcf2c5566175a6a53626442e5487dde56effa49ff0fb6ebd62badb"
+    },
+    {
+      "file": "css/store.css",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "46d30b385fae52ebc1807894d01a76273f7cc126134fe65d64cc402602dbcd51"
+    },
+    {
+      "file": "css/theme.css",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "778f03fc8885b8533212904e0e980be865914fdd8469408ef50726fd9ac58706"
+    },
+    {
+      "file": "images/member1.png",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "b087d0dae5b7ea120856687f65f0a210e321b380965ed68a19f4183e756a906b"
+    },
+    {
+      "file": "images/member2.png",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "c4b7c710f1ee9e1a210666e00cffe5e44f432683239b48d4aea020aa20d2c39b"
+    },
+    {
+      "file": "images/member3.png",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "4dc1eeb907180df25607b01e2a76444513e8e877f201906bf97925a45829edf2"
+    },
+    {
+      "file": "images/member4.png",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "f68bbe4ed75a44e45c5e17226b86b6e81bb479cc5ac6dfff872fdcf4cbe2ae79"
+    },
+    {
+      "file": "images/placeholder.svg",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "2803bdc90bef2035399ba09f6405711a1276714b8c7449ad2ea84d29b9e9e16b"
+    },
+    {
+      "file": "images/about-gallery/angrybirds.jpg",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "fd8dcb784d3a68539ec550ff63fb77dc9033b834101795ea07cb101980212c52"
+    },
+    {
+      "file": "images/about-gallery/brawlstars.jpg",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "c57eeefbfc7514f60f5612611473293dbd9f23208723304af78cb3cac5438f84"
+    },
+    {
+      "file": "images/about-gallery/dota2.jpg",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "4d1b694e7d28fabdcb583d0336dec98ea6a02f7c4bedfda8978807b345ee864e"
+    },
+    {
+      "file": "images/about-gallery/fishingsim.avif",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "b21739ba6fd52e36ac272a5329ce6118a21c328448a091f2f6ba0169090d6962"
+    },
+    {
+      "file": "images/about-gallery/iambear.webp",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "dafc49739867aa4b347aeefc9d7c0b0dc37dab801d4af94bb7e8d4928ceba759"
+    },
+    {
+      "file": "images/about-gallery/librariansimulator.webp",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "144cff8b82ef799b69b45b266aeaabfab84ebd0005a14c7d7642fed535f88d40"
+    },
+    {
+      "file": "images/about-gallery/minecraft.jpg",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "5ad4f1605d465ad0059d3ec28b89c228189e391d1cc5a10c100ea3f4a540099b"
+    },
+    {
+      "file": "images/about-gallery/roblox.png",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "77d7744d834adf8dcca0b491a91e48af731308f4c814225c7e18ab0904452296"
+    },
+    {
+      "file": "images/about-gallery/rust.jpeg",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "d2b3ce15dc5a5338a13b87ea65a4075ae8193d932bf29057379f107a01256407"
+    },
+    {
+      "file": "images/games/baldurs-gate-3.jpg",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "70f099749ece31e4ff2d017cbfafc47fd8cbe52e23eb26daec8dde4549576ccb"
+    },
+    {
+      "file": "images/games/counter-strike-2-screenshot.jpg",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "2cab42e06f2878d31cd0bec1c1262d7b06c44a37822b453b553c4ed0ddd8ecba"
+    },
+    {
+      "file": "images/games/counter-strike-2.jpg",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "747527645619ecf6fbbec78aa543ab0c9a5be12f0bd7c17ccf559e1522678ded"
+    },
+    {
+      "file": "images/games/cyberpunk-2077-screenshot.jpg",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "ec7f40415a114235c549a8ec94020e4fe29af61b128c3a1ae4ed8e85287f6f72"
+    },
+    {
+      "file": "images/games/cyberpunk-2077.jpg",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "b93e64874b844e41a3269e9be00c9fad8037e8a79d00535a8344542bd02c81e6"
+    },
+    {
+      "file": "images/games/elden-ring-screenshot.jpg",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "a36496ede706be315339f1ab0d4aacbb7269ec29870fbc9902af0d36ed06ee42"
+    },
+    {
+      "file": "images/games/elden-ring.jpg",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "c6b1f5c4a6a44a5f1a37962b42426a55f4db7788a40cd9d80b56fdc289016f6e"
+    },
+    {
+      "file": "images/games/grand-theft-auto-v.jpg",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "e1ee8ed03ef2926d224e331a1bc61711822bbe7261cf847624089c1e95207a9a"
+    },
+    {
+      "file": "images/games/hogwarts-legacy.jpg",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "5d406f44f7725e2249ddb63a40c15d05531bbf504837c4374bb2586fe3c07b79"
+    },
+    {
+      "file": "images/games/red-dead-redemption-2.jpg",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "27aa89c336b381083a1b3e8de84ffbcb842219dabca97aabfcf707b1dd8c135c"
+    },
+    {
+      "file": "images/games/steam-deck.jpg",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "504d43bedbb5cc6afb2ff5119f3044afb92bbecf705a0b083cdd4eb2ffe37ea9"
+    },
+    {
+      "file": "vendor/bootstrap/bootstrap.bundle.min.js",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "e4fd49181388c48ec5040bd3fe66f57c29c8e67fcd8502b3354b96ec7ab47cc7"
+    },
+    {
+      "file": "vendor/bootstrap/bootstrap.min.css",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "d85327d99c7a3ee1f9b5d0500d1370acea3ad2db39c163c2f51f232baedbdede"
+    },
+    {
+      "file": "vendor/bootstrap/LICENSE",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "4620c84ad5ce8602ff65640ed6b7c8b78ebb9e036584f0ebc1ccc88206a4bb51"
+    },
+    {
+      "file": "vendor/jquery/jquery-4.0.0.min.js",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "39a546ea9ad97f8bfaf5d3e0e8f8556adb415e470e59007ada9759dce472adaa"
+    },
+    {
+      "file": "script.js",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "f7184bd6f75dfe5323b4192adf44a0413c41777ad8516ef4241d4f293487d112"
+    },
+    {
+      "file": "audio/notification.wav",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "5771f7b9f8d120105f10af43ae59cede3993c99c86c8d8eac38823424f26b682"
+    }
+  ]
+}
