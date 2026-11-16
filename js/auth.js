@@ -16,9 +16,8 @@
     catch { throw new Error('Browser storage is unavailable or full. Enable local storage and try again.'); }
   };
   const normalizeEmail = value => String(value).trim().toLowerCase();
-  const validEmail = value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value).trim());
-  const validPhone = value => /^\+?[\d\s()-]+$/.test(String(value).trim()) && /^\d{10,15}$/.test(String(value).replace(/\D/g, ''));
-  const validPassword = value => value.length >= 8 && /[A-Z]/.test(value) && /[a-z]/.test(value) && /\d/.test(value) && /[^A-Za-z0-9\s]/.test(value);
+  const validation = window.HUB_VALIDATE;
+  const {validEmail, validPhone, validPassword} = validation;
   const current = () => accounts().find(a => a.id === read(sessionKey, null)?.accountId) || null;
   async function digest(password, salt) {
     if (!window.crypto?.subtle) throw new Error('Open the hosted HTTPS site or use localhost to create and access demo accounts.');
@@ -35,10 +34,10 @@
   }
   async function register({name, email, phone, password, profileId}) {
     name = String(name).trim(); email = normalizeEmail(email); phone = String(phone).trim();
-    if (!name || name.length > 24) throw new Error('Choose a player name with 1–24 characters.');
+    if (!validation.validName(name)) throw new Error(validation.nameMessage(24));
     if (!validEmail(email)) throw new Error('Enter a valid email address.');
     if (!validPhone(phone)) throw new Error('Enter a phone number with 10–15 digits.');
-    if (!validPassword(password)) throw new Error('Use at least 8 characters with uppercase, lowercase, a number and a symbol.');
+    if (!validPassword(password)) throw new Error(validation.passwordMessage);
     const salt = crypto.randomUUID();
     const passwordHash = await digest(password, salt);
     // Re-read after the asynchronous hash so another completed signup is retained.
@@ -87,6 +86,7 @@
   const login = document.querySelector('#login-form');
   if (login) {
     let busy = false;
+    login.querySelectorAll('input').forEach(field => field.setAttribute('aria-required','true'));
     const setError = (id, message) => {
       const input = document.getElementById(id), error = document.getElementById(id + '-error');
       error.textContent = message; error.hidden = !message; input.classList.toggle('is-invalid', Boolean(message));
@@ -100,7 +100,7 @@
       event.preventDefault(); if (busy) return;
       const email = normalizeEmail(login.elements.email.value), password = login.elements.password.value;
       setError('login-email', !email ? 'Enter your email address.' : !validEmail(email) ? 'Enter a valid email, such as player@example.com.' : '');
-      setError('login-password', !password ? 'Enter your password.' : '');
+      setError('login-password', !password.trim() ? 'Enter your password.' : !validPassword(password) ? validation.passwordMessage : '');
       const invalid = login.querySelector('[aria-invalid="true"]');
       if (invalid) { invalid.focus(); return; }
       const status = login.querySelector('.form-status'), submit = login.querySelector('[type="submit"]');

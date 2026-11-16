@@ -1,13 +1,14 @@
-// Assignment 4, Task 1: validate every demo form without sending or storing data.
+// Validate each important field using the explicit JavaScript rules in validation.js.
 document.querySelectorAll('[data-demo-form]').forEach((form) => {
-  const fields = [...form.querySelectorAll('input, select, textarea')]
-    .filter((field) => field.hasAttribute('data-required') || field.dataset.validate || field.dataset.matches);
+  const rules = window.HUB_VALIDATE.formRules[form.id];
+  const fields = Object.keys(rules).map(name => form.elements.namedItem(name));
   const status = form.querySelector('.form-status');
   let submitted = false;
 
   // Final project: all constraints are checked in JavaScript, with inline feedback.
   form.noValidate = true;
   fields.forEach((field) => {
+    field.setAttribute('aria-required', 'true');
     const error = document.createElement('p');
     error.id = `${field.id}-error`;
     error.className = 'field-error small mt-2 mb-0';
@@ -19,18 +20,7 @@ document.querySelectorAll('[data-demo-form]').forEach((form) => {
   });
 
   const validate = (field) => {
-    const label = field.labels[0]?.textContent.trim() || 'This field';
-    let message = '';
-    if (field.hasAttribute('data-required') && (field.type === 'checkbox' ? !field.checked : !field.value.trim())) {
-      message = field.type === 'checkbox' ? 'Please check this box to continue.' : `${label} is required.`;
-    } else if (field.dataset.validate === 'email' && field.value &&
-      (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value.trim()))) {
-      message = 'Enter a valid email address, such as player@example.com.';
-    } else if (field.dataset.validate === 'phone' && !window.HUB_AUTH.validPhone(field.value)) {
-      message = 'Enter a phone number with 10–15 digits, such as +7 700 123 45 67.';
-    } else if (field.dataset.matches && field.value !== form.elements.namedItem(field.dataset.matches).value) {
-      message = 'Passwords do not match.';
-    }
+    const message = rules[field.name](field);
     const error = document.getElementById(`${field.id}-error`);
     error.textContent = message;
     error.hidden = !message;
@@ -53,14 +43,13 @@ document.querySelectorAll('[data-demo-form]').forEach((form) => {
     status.textContent = form.dataset.successMessage || (form.classList.contains('contact-form')
       ? 'Your message is valid. This is a demo form; no message has been sent.'
       : 'Your email is valid. This is a demo form; no subscription has been created.');
+    form.dispatchEvent(new CustomEvent('hub:form-valid'));
   });
 
   const updateField = (event) => {
     status.textContent = '';
     if (!submitted) return;
     if (fields.includes(event.target)) validate(event.target);
-    // Editing the original password must also re-check its confirmation.
-    fields.filter((field) => field.dataset.matches === event.target.name).forEach(validate);
   };
   form.addEventListener('input', updateField);
   form.addEventListener('change', updateField);

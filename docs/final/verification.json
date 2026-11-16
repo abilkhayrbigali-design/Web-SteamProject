@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-16T05:29:43.678Z",
+  "date": "2026-11-16T11:53:01.888Z",
   "results": [
     {
       "name": "All local HTML, image, script, stylesheet and anchor targets exist; no native form constraints",
@@ -39,6 +39,30 @@
     },
     {
       "name": "Support form validates phone and email inline; valid submission stays local",
+      "passed": true
+    },
+    {
+      "name": "Support JS rules reject whitespace, bad email/phone, long text and unchecked consent",
+      "passed": true
+    },
+    {
+      "name": "Newsletter popup validates email in JS, recovers after errors and resets",
+      "passed": true
+    },
+    {
+      "name": "Registration enforces JS email, phone and every password-complexity rule",
+      "passed": true
+    },
+    {
+      "name": "Final signup submission revalidates earlier steps and never saves invalid account data",
+      "passed": true
+    },
+    {
+      "name": "Player card validates required selections, name length and all fields at final confirmation",
+      "passed": true
+    },
+    {
+      "name": "Dynamic local-player dialog and login enforce JS-only name/password rules",
       "passed": true
     },
     {

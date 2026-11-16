@@ -1,6 +1,6 @@
 {
   "name": "steam-game-hub-final",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": true,
   "description": "Team Eggs SE-2507 final project: responsive game hub with local authentication and GamerPower API.",
   "scripts": {

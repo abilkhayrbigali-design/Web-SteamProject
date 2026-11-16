@@ -1,0 +1,27 @@
+STEAM GAME HUB - JAVASCRIPT VALIDATION AUDIT
+Team Eggs | SE-2507 | 16 November 2026
+
+All important-field rules are defined in js/validation.js and applied by js/site.js, js/auth.js, script.js and js/assignment5.js.
+HTML supplies structure, labels, autocomplete and inputmode keyboard hints. Every form has novalidate, including the player and checkout forms generated at runtime.
+There are no native required/pattern/minlength/maxlength/min/max/type=email constraints and no HTML data-required/data-validate rules. Application code does not use checkValidity(), reportValidity(), setCustomValidity() or validity.
+
+CHECKED FORMS
+1. Registration: name, email, phone, password, matching confirmation; duplicate email and local player; all steps rechecked before save.
+2. Login: required email/password, email format and password requirements, credential match and redirect.
+3. Support: required name/email/phone/message/acknowledgment checkbox; inline feedback and no simulated success when invalid.
+4. Newsletter popup: empty/invalid email, corrected valid submission and reset.
+5. Local player dialog: blank/invalid/too-long/duplicate name and profile limit.
+6. Player-card wizard: name and mandatory genre/style selections; all earlier steps rechecked before final confirmation.
+7. Search/filter and checkout forms: no required text fields; filters may be empty, while purchases check current player, ownership and wallet in JavaScript.
+
+BOUNDARIES
+Player name: 1-24 characters; player-card name: 1-40; support name: 1-80. At least one letter/number; angle brackets and control characters rejected. Cyrillic/Latin names supported.
+Email: trimmed, <=254 characters; common mailbox/domain structure, domain labels and TLD checked; leading/trailing/consecutive dots in mailbox, empty domain labels and invalid hyphens rejected. Plus-addressing and subdomains supported. This is a common-address format check, not proof that a mailbox exists.
+Phone: 10-15 digits, optional leading +, spaces/hyphens and complete parenthesized area-code groups. Letters, multiple + signs and unmatched parentheses rejected.
+Password: 8-128 characters, uppercase, lowercase, number and symbol; control characters rejected. Signup confirmation must match exactly.
+Message: nonblank and at most 2,000 characters.
+
+TEST EVIDENCE
+tests/final.cjs contains negative/positive form flows and boundary cases, runtime inspection of generated forms, and a browser fixture that throws if application code calls native validation APIs.
+The suite also verifies the original collection, theme, responsive and API behavior. See verification.json for the actual run results.
+Account simulation remains browser-local; it is not a production security boundary.

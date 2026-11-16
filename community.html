@@ -2,6 +2,7 @@
 <html data-bs-theme="dark" lang="en">
  <head>
 <script src="js/theme-init.js"></script>
+<script defer src="js/validation.js"></script>
   <!-- Team: Eggs | Group: SE-2507 -->
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -393,18 +394,18 @@
         <div data-profile-step="Player name">
          <h3 class="h5 mb-3" tabindex="-1">What should we call you?</h3>
          <label class="form-label" for="player-name">Player name</label>
-         <input aria-describedby="profile-error" autocomplete="nickname" class="form-control mb-3" id="player-name" name="player_name" placeholder="Your nickname" data-required type="text"/>
+         <input aria-describedby="profile-error" autocomplete="nickname" class="form-control mb-3" id="player-name" name="player_name" placeholder="Your nickname" type="text"/>
         </div>
         <div data-profile-step="Preferences" hidden>
          <h3 class="h5 mb-3" tabindex="-1">Choose your favourites</h3>
          <div class="row g-3 mb-3">
           <div class="col-12 col-md-6">
            <label class="form-label" for="player-genre">Favourite genre</label>
-           <select aria-describedby="profile-error" class="form-select" id="player-genre" name="player_genre" data-required><option value="">Choose a genre</option><option>RPG</option><option>Shooter</option><option>Strategy</option><option>Adventure</option><option>Sandbox</option></select>
+           <select aria-describedby="profile-error" class="form-select" id="player-genre" name="player_genre"><option value="">Choose a genre</option><option>RPG</option><option>Shooter</option><option>Strategy</option><option>Adventure</option><option>Sandbox</option></select>
           </div>
           <div class="col-12 col-md-6">
            <label class="form-label" for="player-style">Play style</label>
-           <select aria-describedby="profile-error" class="form-select" id="player-style" name="player_style" data-required><option value="">Choose a play style</option><option>Solo</option><option>Co-op</option><option>Competitive</option></select>
+           <select aria-describedby="profile-error" class="form-select" id="player-style" name="player_style"><option value="">Choose a play style</option><option>Solo</option><option>Co-op</option><option>Competitive</option></select>
           </div>
          </div>
         </div>
@@ -423,7 +424,7 @@
         <p class="profile-result rounded-3 p-3 mt-3 mb-0" data-profile-result="" hidden role="status" tabindex="-1"></p>
        </form>
       </section>
-      <!-- Assignment 4, Task 1: data-required fields, email and matching passwords. -->
+      <!-- Assignment 4, Task 1: fields, email and matching passwords. -->
       <section aria-labelledby="join-title" class="community-cta rounded-3 border p-4 p-md-5" id="join-community">
        <div class="row g-4">
         <div class="col-12 col-lg-5">
@@ -444,25 +445,25 @@
           <legend class="h4 mb-2">What should we call you?</legend>
           <p class="text-body-secondary small mb-4">Choose the name that appears on your player profile.</p>
           <label class="form-label" for="register-name">Display name</label>
-          <input aria-describedby="register-name-error" autocomplete="nickname" class="form-control" id="register-name" name="display_name" placeholder="Your player name" data-required type="text">
+          <input aria-describedby="register-name-error" autocomplete="nickname" class="form-control" id="register-name" name="display_name" placeholder="Your player name" type="text">
           <p class="field-error small mt-2" id="register-name-error" hidden></p>
          </fieldset>
          <fieldset data-registration-step="1" hidden>
           <legend class="h4 mb-2">How can we reach you?</legend>
           <p class="text-body-secondary small mb-4">One more step towards your next adventure.</p>
           <label class="form-label" for="register-email">Email address</label>
-          <input aria-describedby="register-email-error" autocomplete="email" class="form-control" id="register-email" name="email" placeholder="player@example.com" data-required type="text" inputmode="email" data-validate="email">
-          <p class="field-error small mt-2" id="register-email-error" hidden></p><label class="form-label mt-3" for="register-phone">Phone number</label><input class="form-control" id="register-phone" name="phone" type="tel" autocomplete="tel" placeholder="+7 700 123 45 67" data-required aria-describedby="phone-hint register-phone-error"><p id="phone-hint" class="small text-body-secondary mt-2">Use 10–15 digits; spaces, parentheses, hyphens and a leading + are accepted.</p><p id="register-phone-error" class="field-error small mt-2" hidden></p>
+          <input aria-describedby="register-email-error" autocomplete="email" class="form-control" id="register-email" name="email" placeholder="player@example.com" type="text" inputmode="email">
+          <p class="field-error small mt-2" id="register-email-error" hidden></p><label class="form-label mt-3" for="register-phone">Phone number</label><input class="form-control" id="register-phone" name="phone" type="tel" autocomplete="tel" placeholder="+7 700 123 45 67" aria-describedby="phone-hint register-phone-error"><p id="phone-hint" class="small text-body-secondary mt-2">Use 10–15 digits; spaces, parentheses, hyphens and a leading + are accepted.</p><p id="register-phone-error" class="field-error small mt-2" hidden></p>
          </fieldset>
          <fieldset data-registration-step="2" hidden>
           <legend class="h4 mb-2">Finish your player profile</legend>
           <p class="text-body-secondary small mb-4">Use a sample password for this frontend demo.</p>
           <label class="form-label" for="register-password">Password</label>
-          <input aria-describedby="password-hint register-password-error" autocomplete="new-password" class="form-control" id="register-password" name="password" data-required type="password">
-          <p class="small text-body-secondary mt-2 mb-0" id="password-hint">Use at least 8 characters, including uppercase, lowercase, a number and a symbol.</p>
+          <input aria-describedby="password-hint register-password-error" autocomplete="new-password" class="form-control" id="register-password" name="password" type="password">
+          <p class="small text-body-secondary mt-2 mb-0" id="password-hint">Use 8–128 characters, including uppercase, lowercase, a number and a symbol.</p>
           <p class="field-error small mt-2" id="register-password-error" hidden></p>
           <label class="form-label mt-3" for="register-confirm">Confirm password</label>
-          <input aria-describedby="register-confirm-error" autocomplete="new-password" class="form-control" id="register-confirm" name="password_confirmation" data-required type="password">
+          <input aria-describedby="register-confirm-error" autocomplete="new-password" class="form-control" id="register-confirm" name="password_confirmation" type="password">
           <p class="field-error small mt-2" id="register-confirm-error" hidden></p>
          </fieldset>
          <div class="registration-actions" data-registration-actions>

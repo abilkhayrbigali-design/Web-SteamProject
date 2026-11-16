@@ -110,7 +110,7 @@ $(document).ready(function () {
     renderState();
   });
 
-  const $profiles = $(`<dialog class="hub-dialog" id="profiles-dialog" aria-labelledby="profiles-title"><button class="dialog-close" type="button" data-close-hub-dialog aria-label="Close profiles">×</button><p class="eyebrow">MAKE YOURSELF AT HOME</p><h2 id="profiles-title">Choose your player</h2><p>Each local profile has its own wallet, library and ratings.</p><div class="profile-list" data-profile-list></div><form id="create-profile" novalidate><label for="profile-name">Add a player</label><div class="profile-create-row"><input class="form-control" id="profile-name" name="player" placeholder="Player name" data-required autocomplete="off"><button type="submit" class="buy-button">Create</button></div><p class="profile-error" role="status"></p></form><p class="profile-note mt-3 mb-0">Frontend demo · Saved in this browser. Every refresh refills all wallets to $100; games and ratings stay saved.</p></dialog>`).appendTo('body');
+  const $profiles = $(`<dialog class="hub-dialog" id="profiles-dialog" aria-labelledby="profiles-title"><button class="dialog-close" type="button" data-close-hub-dialog aria-label="Close profiles">×</button><p class="eyebrow">MAKE YOURSELF AT HOME</p><h2 id="profiles-title">Choose your player</h2><p>Each local profile has its own wallet, library and ratings.</p><div class="profile-list" data-profile-list></div><form id="create-profile" novalidate><label for="profile-name">Add a player</label><div class="profile-create-row"><input class="form-control" id="profile-name" name="player" placeholder="Player name" autocomplete="off"><button type="submit" class="buy-button">Create</button></div><p class="profile-error" role="status"></p></form><p class="profile-note mt-3 mb-0">Frontend demo · Saved in this browser. Every refresh refills all wallets to $100; games and ratings stay saved.</p></dialog>`).appendTo('body');
   const $checkout = $(`<dialog class="hub-dialog" id="checkout-dialog" aria-labelledby="checkout-title"><button class="dialog-close" type="button" data-close-hub-dialog aria-label="Close checkout">×</button><p class="eyebrow" data-checkout-kicker>ADD TO YOUR COLLECTION</p><h2 id="checkout-title">Get this game</h2><img class="purchase-cover" data-checkout-image alt=""><h3 class="h5" data-checkout-name></h3><p data-checkout-note></p><div class="checkout-line"><span data-checkout-cost-label>Game price</span><span data-checkout-cost></span></div><div class="checkout-line"><span>Your balance</span><span data-checkout-balance></span></div><div class="checkout-line"><span>Balance afterwards</span><strong data-checkout-after></strong></div><p class="purchase-error" role="alert" data-checkout-error></p><form id="checkout-form" novalidate><div class="dialog-actions"><button type="button" class="text-button" data-close-hub-dialog>Cancel</button><button type="submit" class="buy-button" data-checkout-confirm>Confirm purchase</button></div></form></dialog>`).appendTo('body');
   let dialogTrigger;
   let transaction = null;
@@ -149,10 +149,12 @@ $(document).ready(function () {
     const name = $('#profile-name').val().trim();
     state = readState();
     let error = '';
-    if (!name || name.length > 24) error = 'Enter a player name with 1–24 characters.';
+    if (!window.HUB_VALIDATE.validName(name)) error = window.HUB_VALIDATE.nameMessage(24);
     else if (state.profiles.some(p => p.name.toLowerCase() === name.toLowerCase())) error = 'That player already exists. Choose them above or use another name.';
     else if (state.profiles.length >= 20) error = 'This browser already has 20 profiles.';
     $('.profile-error').text(error);
+    $('#profile-name').attr({'aria-required':'true', 'aria-invalid':String(Boolean(error)), 'aria-describedby':'local-profile-error'}).toggleClass('is-invalid',Boolean(error));
+    $('.profile-error').attr('id','local-profile-error');
     if (error) return;
     const id = 'player-' + (window.crypto?.randomUUID?.() || Date.now() + '-' + Math.random().toString(16).slice(2));
     state.profiles.push(newProfile(name, id));
@@ -164,8 +166,14 @@ $(document).ready(function () {
       toast(`${name}, your $100 demo wallet is ready.`);
     }
   });
+  $('#profile-name').on('input',function () {
+    if ($(this).attr('aria-invalid') === 'true' && window.HUB_VALIDATE.validName(this.value)) {
+      $(this).removeAttr('aria-invalid').removeClass('is-invalid');
+      $('.profile-error').empty();
+    }
+  });
 
-  // Community registration: name -> email -> password; create a local player only.
+  // Community registration: all field rules and final-step rechecks run in JavaScript.
   const $registration = $('[data-registration-form]');
   if ($registration.length) {
     let registrationStep = 0;
@@ -177,6 +185,7 @@ $(document).ready(function () {
     const $phone = $('#register-phone');
     const $password = $('#register-password');
     const $confirm = $('#register-confirm');
+    $registration.find('input').attr('aria-required','true');
     function registrationError($field, message) {
       $field.toggleClass('is-invalid', Boolean(message));
       if (message) $field.attr('aria-invalid', 'true');
@@ -190,13 +199,13 @@ $(document).ready(function () {
       if (!field.value.trim()) error = 'Please complete this field.';
       else if (field === $name[0]) {
         state = readState();
-        if (field.value.trim().length > 24) error = 'Use no more than 24 characters.';
+        if (!window.HUB_VALIDATE.validName(field.value)) error = window.HUB_VALIDATE.nameMessage(24);
         else if (state.profiles.some(p => p.name.toLowerCase() === field.value.trim().toLowerCase())) error = 'This player name already exists. Choose another name or switch profiles in the header.';
         else if (state.profiles.length >= 20) error = 'This browser already has 20 player profiles.';
-      } else if (field === $email[0] && (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value.trim()))) error = 'Enter a valid email address, such as player@example.com.';
+      } else if (field === $email[0] && !window.HUB_VALIDATE.validEmail(field.value)) error = window.HUB_VALIDATE.emailMessage;
       else if (field === $email[0] && window.HUB_AUTH.emailExists(field.value)) error = 'This email already has an account. Log in or use another email.';
       else if (field === $phone[0] && !window.HUB_AUTH.validPhone(field.value)) error = 'Enter a phone number with 10–15 digits, such as +7 700 123 45 67.';
-      else if (field === $password[0] && !window.HUB_AUTH.validPassword(field.value)) error = 'Use at least 8 characters with uppercase, lowercase, a number and a symbol.';
+      else if (field === $password[0] && !window.HUB_AUTH.validPassword(field.value)) error = window.HUB_VALIDATE.passwordMessage;
       else if (field === $confirm[0] && field.value !== $password.val()) error = 'Passwords do not match.';
       return registrationError($field, error);
     }
@@ -237,8 +246,13 @@ $(document).ready(function () {
       const invalid = $panels.eq(registrationStep).find('input').toArray().filter(field => !validateRegistrationField(field));
       if (invalid.length) { invalid[0].focus(); return; }
       if (registrationStep < 2) { showRegistrationStep(registrationStep + 1); return; }
-      // Recheck the name as another tab may have created it while steps were filled.
-      if (!validateRegistrationField($name[0])) { showRegistrationStep(0); return; }
+      // Autofill or another tab may change earlier values: validate every step again.
+      const invalidAll = $registration.find('input').toArray().filter(field => !validateRegistrationField(field));
+      if (invalidAll.length) {
+        showRegistrationStep($panels.index($(invalidAll[0]).closest('[data-registration-step]')),false);
+        invalidAll[0].focus();
+        return;
+      }
       registrationBusy = true;
       const playerName = $name.val().trim();
       const $submit = $registration.find('[data-registration-next]');
@@ -585,7 +599,7 @@ $(document).ready(function () {
   $('[data-feature-index]').on('click', function () { showFeature(Number($(this).attr('data-feature-index'))); });
 
   // Add submission feedback to the existing validated contact and newsletter forms.
-  $('[data-demo-form]').on('submit', function () {
+  $('[data-demo-form]').on('hub:form-valid', function () {
     const $form = $(this);
     if ($form.find('[aria-invalid="true"]').length || $form.data('submitting')) return;
     const $button = $form.find('[type="submit"]');

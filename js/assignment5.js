@@ -160,17 +160,23 @@ if (profileForm) {
     },
   };
 
-  function validateStep() {
-    const fields = [...panels[state.step].querySelectorAll('input, select')];
+  function validateStep(step = state.step, moveFocus = true) {
+    const fields = [...panels[step].querySelectorAll('input, select')];
     let firstInvalid = null;
+    let firstMessage = '';
     for (const field of fields) {
-      const valid = field.value.trim() !== '' && (field.name !== 'player_name' || field.value.trim().length <= 40);
+      const valid = field.name === 'player_name'
+        ? window.HUB_VALIDATE.validName(field.value,40) : window.HUB_VALIDATE.validSelection(field);
+      field.setAttribute('aria-required','true');
       field.classList.toggle('is-invalid', !valid);
       field.setAttribute('aria-invalid', String(!valid));
-      if (!valid && !firstInvalid) firstInvalid = field;
+      if (!valid && !firstInvalid) {
+        firstInvalid = field;
+        firstMessage = field.name === 'player_name' ? window.HUB_VALIDATE.nameMessage(40) : 'Choose a favourite genre and a play style before continuing.';
+      }
     }
-    error.textContent = firstInvalid ? 'Please complete the highlighted field before continuing.' : '';
-    if (firstInvalid) firstInvalid.focus();
+    error.textContent = firstMessage;
+    if (firstInvalid && moveFocus) firstInvalid.focus();
     return firstInvalid === null;
   }
 
@@ -198,6 +204,15 @@ if (profileForm) {
       next.click();
       return;
     }
+    for (let step = 0; step < panels.length - 1; step++) {
+      if (!validateStep(step,false)) {
+        state.goTo(step,showStep);
+        validateStep();
+        return;
+      }
+    }
+    profileForm.querySelector('[data-profile-summary]').textContent =
+      `${name.value.trim()} enjoys ${genre.value} games and prefers ${style.value.toLowerCase()} sessions.`;
     result.textContent = `Player card ready! ${profileForm.querySelector('[data-profile-summary]').textContent} This preview is only on this page; no account was created.`;
     result.hidden = false;
     result.focus();
@@ -210,11 +225,11 @@ if (profileForm) {
     });
     state.goTo(0, showStep);
   });
-  profileForm.addEventListener('input', (event) => {
-    event.target.removeAttribute('aria-invalid');
-    event.target.classList.remove('is-invalid');
-    error.textContent = '';
-  });
+  const updateProfileField = event => {
+    if (event.target.getAttribute('aria-invalid') === 'true') validateStep(state.step,false);
+  };
+  profileForm.addEventListener('input',updateProfileField);
+  profileForm.addEventListener('change',updateProfileField);
   profileForm.noValidate = true;
   showStep(0, false);
   profileForm.hidden = false;

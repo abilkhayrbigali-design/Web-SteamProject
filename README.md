@@ -2,7 +2,7 @@
 
 Team **Eggs**, group **SE-2507**, Web Technologies I.
 
-**[Live website](https://chinusoid.github.io/Web-SteamProject/)** · **[Final submission files](https://github.com/chinusoid/Web-SteamProject/releases/tag/v2.0.0-final)**
+**[Live website](https://chinusoid.github.io/Web-SteamProject/)** · **[Final submission files](https://github.com/chinusoid/Web-SteamProject/releases/tag/v2.0.1-final)**
 
 A continuation of the team's Assignment 6 game hub: discover games, try virtual purchases, build a local collection, rate games and explore current giveaways. Independent student project; no affiliation with Valve or Steam.
 
@@ -11,7 +11,7 @@ A continuation of the team's Assignment 6 game hub: discover games, try virtual 
 - 13 connected responsive pages; desktop, tablet and mobile.
 - Light/dark mode on every page, saved in localStorage and synchronized across tabs.
 - Three-step signup, credential-based login, profile details and logout.
-- JavaScript validation with inline errors: required fields, email, phone, complex password and matching confirmation. All forms use `novalidate`; no native constraint-validation attributes.
+- Shared JavaScript rules in `js/validation.js` with inline errors: required fields, email, phone, 8–128 character complex password and matching confirmation. All wizard steps are rechecked before saving. All forms use `novalidate`; no native constraint-validation attributes.
 - Dynamic catalogue search, genre/budget filters, safe highlighting and saved filters.
 - Player-specific virtual $100 wallets, confirmations, purchases, returns and ratings.
 - Public GamerPower API through `fetch`/`async`/`await`: platform filters, current giveaway cards, loading/error/empty/retry and labelled cached preview.
@@ -46,6 +46,8 @@ python -m http.server 4173 --bind 127.0.0.1
 Open `http://127.0.0.1:4173/`. Use localhost or the hosted HTTPS site for Web Crypto. Bootstrap, jQuery and catalogue artwork are bundled. The API and external offer pages need internet.
 
 Create an account under **Community -> Join** using **sample details and a demo password**. No account is pre-seeded. Accounts stay in their browser/origin: localhost accounts do not appear on GitHub Pages. Passwords need at least 8 characters, uppercase, lowercase, a digit and a symbol.
+
+Validation audit and boundary cases: `docs/final/Validation_Audit.txt`. Required fields are declared in JavaScript; `inputmode`/`autocomplete` are keyboard hints only. Runtime-generated forms are audited too.
 
 ## Data and limits
 

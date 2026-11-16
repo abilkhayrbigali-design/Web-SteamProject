@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <script src="js/theme-init.js"></script>
+<script defer src="js/validation.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Steam Game Hub — Log in</title>
 <meta name="description" content="Log in to your local Steam Game Hub demo account.">
@@ -97,8 +98,8 @@
  <div class="account-intro"><p class="eyebrow">YOUR NEXT SESSION STARTS HERE</p><h1>Welcome back,<br>player.</h1><p>Your collection, your ratings, your next adventure. Pick up where you left off.</p><img src="images/games/elden-ring-screenshot.jpg" alt="A vast fantasy landscape in Elden Ring" width="1000" height="560"><p class="small text-body-secondary">Student project · Browser-local demo accounts · Virtual purchases</p></div>
  <div class="account-panel"><p class="eyebrow">PLAYER ACCESS</p><h2>Log in</h2><p>Use the account you created in this browser.</p>
  <form id="login-form" novalidate>
-  <label for="login-email">Email address</label><input id="login-email" name="email" class="form-control" type="text" inputmode="email" autocomplete="username" data-required data-validate="email" aria-describedby="login-email-error"><p id="login-email-error" class="field-error" hidden></p>
-  <label for="login-password">Password</label><div class="password-row"><input id="login-password" name="password" class="form-control" type="password" autocomplete="current-password" data-required aria-describedby="login-password-error"><button type="button" class="text-button" data-toggle-password="login-password" aria-label="Show password" aria-pressed="false">Show</button></div><p id="login-password-error" class="field-error" hidden></p>
+  <label for="login-email">Email address</label><input id="login-email" name="email" class="form-control" type="text" inputmode="email" autocomplete="username" aria-describedby="login-email-error"><p id="login-email-error" class="field-error" hidden></p>
+  <label for="login-password">Password</label><div class="password-row"><input id="login-password" name="password" class="form-control" type="password" autocomplete="current-password" aria-describedby="login-password-error"><button type="button" class="text-button" data-toggle-password="login-password" aria-label="Show password" aria-pressed="false">Show</button></div><p id="login-password-error" class="field-error" hidden></p>
   <p class="form-status" role="status" aria-live="polite"></p><button type="submit" class="buy-button account-submit">Log in →</button>
  </form><p class="account-note">New here? <a href="community.html#join-community">Create an account</a></p><p class="small text-body-secondary">This is an authentication simulation, not a secure online account. Use sample details and a demo password. Accounts stay on this device.</p>
  </div>

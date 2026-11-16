@@ -2,6 +2,7 @@
 <html data-bs-theme="dark" lang="en">
  <head>
 <script src="js/theme-init.js"></script>
+<script defer src="js/validation.js"></script>
   <!-- Team: Eggs | Group: SE-2507 -->
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -116,7 +117,7 @@
          <label class="form-label" for="name">
           Name
          </label>
-         <input autocomplete="name" class="form-control" id="name" name="name" placeholder="Enter your name" data-required type="text"/>
+         <input autocomplete="name" class="form-control" id="name" name="name" placeholder="Enter your name" type="text"/>
         </div>
         <div class="form-group mb-3">
          <label class="form-label" for="email">
@@ -126,10 +127,10 @@
           <span aria-hidden="true" class="input-group-text">
            @
           </span>
-          <input autocomplete="email" class="form-control" id="email" name="email" placeholder="Enter your email" data-required type="text" inputmode="email" data-validate="email"/>
+          <input autocomplete="email" class="form-control" id="email" name="email" placeholder="Enter your email" type="text" inputmode="email"/>
          </div>
         </div>
-        <div class="mb-4"><label class="form-label" for="contact-phone">Phone number</label><input class="form-control" id="contact-phone" name="phone" type="tel" autocomplete="tel" placeholder="+7 700 123 45 67" data-required data-validate="phone"><p class="small text-body-secondary mt-2">10–15 digits; an international prefix is welcome.</p></div><div class="form-group mb-3">
+        <div class="mb-4"><label class="form-label" for="contact-phone">Phone number</label><input class="form-control" id="contact-phone" name="phone" type="tel" autocomplete="tel" placeholder="+7 700 123 45 67"><p class="small text-body-secondary mt-2">10–15 digits; an international prefix is welcome.</p></div><div class="form-group mb-3">
          <label class="form-label" for="genre">
           Favourite Genre
          </label>
@@ -155,7 +156,7 @@
          <label class="form-label" for="message">
           Message
          </label>
-         <textarea class="form-control" id="message" name="message" placeholder="Write your message here..." data-required rows="6"></textarea>
+         <textarea class="form-control" id="message" name="message" placeholder="Write your message here..." rows="6"></textarea>
         </div>
         <fieldset class="mb-3">
          <legend class="fs-6 fw-semibold">
@@ -175,7 +176,7 @@
          </div>
         </fieldset>
         <div class="form-check mb-4">
-         <input class="form-check-input" id="demo-check" name="demo-check" data-required type="checkbox"/>
+         <input class="form-check-input" id="demo-check" name="demo-check" type="checkbox"/>
          <label class="form-check-label" for="demo-check">
           I understand this is a local demonstration.
          </label>
@@ -210,7 +211,7 @@
          </button>
         </h3>
         <div aria-labelledby="faq-question-2" class="faq-panel" id="faq-answer-2" inert="" role="region">
-         <div><p class="px-3 px-md-4 pb-4 mb-0">You can try the <a href="community.html#join-community">registration form</a> and the <a href="news.html#newsletter">newsletter popup</a>. Both validate your input locally. They do not create accounts, send emails or save personal information.</p></div>
+         <div><p class="px-3 px-md-4 pb-4 mb-0">You can try the <a href="community.html#join-community">registration form</a> and the <a href="news.html#newsletter">newsletter popup</a>. Registration creates a browser-local demo account; the newsletter only checks your email. No data is sent to a server.</p></div>
         </div>
        </div>
        <div class="faq-item rounded-3">

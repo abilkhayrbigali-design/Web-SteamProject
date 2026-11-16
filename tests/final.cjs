@@ -46,6 +46,10 @@ async function check(name, action) {
       assert(target.includes('id="'+m[2]+'"'),file+' broken anchor '+m[0]);
     }
    }
+   for(const file of ['script.js',...(await fs.readdir(path.join(root,'js'))).filter(n=>n.endsWith('.js')).map(n=>'js/'+n)]) {
+     const source=await fs.readFile(path.join(root,file),'utf8');
+     assert(!/\.(?:checkValidity|reportValidity|setCustomValidity)\s*\(|\.validity\b/.test(source),file+' relies on native validation');
+   }
  });
  await check('13 connected pages fit desktop, tablet and mobile in both themes without JS errors',async()=>{
   const pages=(await fs.readdir(root)).filter(n=>n.endsWith('.html'));
@@ -58,6 +62,11 @@ async function check(name, action) {
       for(const file of pages){
         await goto(file);
         assert.equal(await page.locator('html').getAttribute('data-bs-theme'),theme);
+        const constraints=await page.evaluate(()=>[...document.forms].flatMap(form=>[
+          ...(!form.noValidate?[form.id+' missing novalidate']:[]),
+          ...[...form.querySelectorAll('[required],[pattern],[minlength],[maxlength],[min],[max],input[type=email]')].map(el=>el.id+' uses native constraints'),
+        ]));
+        assert.deepEqual(constraints,[],`${file} runtime form audit`);
         const sizes=await page.evaluate(()=>({body:document.documentElement.scrollWidth,viewport:innerWidth}));
         assert(sizes.body<=sizes.viewport+1,`${file} ${width}px ${theme} overflows: ${sizes.body}`);
       }
@@ -77,6 +86,14 @@ async function check(name, action) {
  // Use a fresh context so responsive fixture init scripts cannot override saved preferences.
  await context.close();
  const flowContext=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
+ await flowContext.addInitScript(()=>{
+   // Fail if application code falls back to browser validation APIs.
+   for(const prototype of [HTMLFormElement.prototype,HTMLInputElement.prototype,HTMLSelectElement.prototype,HTMLTextAreaElement.prototype]) {
+     for(const method of ['checkValidity','reportValidity','setCustomValidity']) {
+       if(typeof prototype[method]==='function') prototype[method]=function(){throw new Error('Native validation called: '+method);};
+     }
+   }
+ });
  const flow=await flowContext.newPage();flow.on('pageerror',e=>errors.push(e.message));
  const go=async file=>{await flow.goto(origin+'/'+file);await flow.waitForFunction(()=>Boolean(document.querySelector('.hub-toasts')));};
  const capture=async(name,selector)=>selector?flow.locator(selector).screenshot({path:path.join(output,'screenshots',name+'.png')}):flow.screenshot({path:path.join(output,'screenshots',name+'.png')});
@@ -144,6 +161,76 @@ async function check(name, action) {
    assert(await flow.locator('#contact-phone-error').isVisible());await capture('support-validation','#contact-form');
    await flow.locator('#name').fill('Demo Player');await flow.locator('#email').fill('demo@example.com');await flow.locator('#contact-phone').fill('+7 700 123 45 67');await flow.locator('#message').fill('This is a final project test.');await flow.locator('#demo-check').check();
    await flow.locator('#contact-form [type=submit]').click();await flow.getByText('Submitted successfully in this demo. No data was sent to a server.').waitFor();
+ });
+ await check('Support JS rules reject whitespace, bad email/phone, long text and unchecked consent',async()=>{
+   await go('contact.html');const submit=flow.locator('#contact-form [type=submit]');
+   await flow.locator('#name').fill('   ');await flow.locator('#email').fill('player..name@example.com');await flow.locator('#contact-phone').fill('+7 (700 123 45 67');await flow.locator('#message').fill('   ');await submit.click();
+   for(const id of ['name','email','contact-phone','message','demo-check']) assert(await flow.locator('#'+id+'-error').isVisible(),id);
+   assert(await submit.isEnabled());assert.equal(await flow.locator('#contact-form').getAttribute('aria-busy'),null);
+   await flow.locator('#name').fill('A'.repeat(81));await flow.locator('#message').fill('M'.repeat(2001));await submit.click();
+   assert(await flow.locator('#name-error').isVisible());assert(await flow.locator('#message-error').isVisible());
+   await flow.locator('#name').fill('Шынгыс Султанкулов');await flow.locator('#email').fill('player+test@sub.example.co.uk');await flow.locator('#contact-phone').fill('+7 (700) 123-45-67');await flow.locator('#message').fill('All required information is present.');
+   await submit.click();assert(await flow.locator('#demo-check-error').isVisible());assert(await submit.isEnabled());
+   await flow.locator('#demo-check').check();await submit.click();await flow.getByText('Submitted successfully in this demo. No data was sent to a server.').waitFor();
+ });
+ await check('Newsletter popup validates email in JS, recovers after errors and resets',async()=>{
+   await go('news.html');await flow.locator('[data-open-dialog="subscription-dialog"]').click();const submit=flow.locator('#subscription-form [type=submit]');
+   for(const email of ['   ','player@example..com','player@-example.com','player@exam_ple.com','player@example.c']) {
+     await flow.locator('#subscriber-email').fill(email);await submit.click();assert(await flow.locator('#subscriber-email-error').isVisible(),email);assert(await submit.isEnabled());
+   }
+   await flow.locator('#subscriber-email').fill('player+news@example.com');await submit.click();await flow.getByText('Submitted successfully in this demo. No data was sent to a server.').waitFor();
+   await flow.locator('#subscription-form').evaluate(form=>form.reset());assert(await flow.locator('#subscriber-email-error').isHidden());
+   await flow.locator('[data-close-dialog]').click();
+ });
+ await check('Registration enforces JS email, phone and every password-complexity rule',async()=>{
+   await go('community.html#join-community');const submit=flow.locator('[data-registration-next]');
+   for(const name of ['   ','!!!','A'.repeat(25)]) {await flow.locator('#register-name').fill(name);await submit.click();assert(await flow.locator('#register-name-error').isVisible());}
+   await flow.locator('#register-name').fill('Boundary Tester');await submit.click();
+   await flow.locator('#register-phone').fill('+7 (700) 123-45-67');
+   for(const email of ['a..b@example.com','.player@example.com','player.@example.com','player@example..com','player@-example.com','player@example.c']) {
+     await flow.locator('#register-email').fill(email);await submit.click();assert(await flow.locator('#register-email-error').isVisible(),email);
+   }
+   await flow.locator('#register-email').fill('boundary+player@example.com');
+   for(const phone of ['123456789','1234567890123456','+7 (700 123 45 67','+7 700) 123 45 67','+7 abc 1234567890','++77001234567']) {
+     await flow.locator('#register-phone').fill(phone);await submit.click();assert(await flow.locator('#register-phone-error').isVisible(),phone);
+   }
+   await flow.locator('#register-phone').fill('+7 (700) 123-45-67');await submit.click();
+   for(const password of ['   ','Ab1!aaa','lowercase1!','UPPERCASE1!','NoDigitsHere!','NoSymbols123','A1!a'+'x'.repeat(125)]) {
+     await flow.locator('#register-password').fill(password);await flow.locator('#register-confirm').fill(password);await submit.click();assert(await flow.locator('#register-password-error').isVisible(),password);
+   }
+   await flow.locator('#register-password').fill('ValidPass1!');await flow.locator('#register-confirm').fill('Mismatch1!');await submit.click();assert(await flow.locator('#register-confirm-error').isVisible());
+ });
+ await check('Final signup submission revalidates earlier steps and never saves invalid account data',async()=>{
+   const count=await flow.evaluate(()=>JSON.parse(localStorage.getItem('hub-accounts-v1')).length);
+   await flow.locator('#register-confirm').fill('ValidPass1!');
+   // Simulate autofill updating a hidden step after it was first validated.
+   await flow.locator('#register-phone').evaluate(input=>{input.value='123';});await flow.locator('[data-registration-next]').click();
+   assert(await flow.locator('#register-phone-error').isVisible());assert(await flow.locator('#register-phone').isVisible());
+   assert.equal(await flow.evaluate(()=>JSON.parse(localStorage.getItem('hub-accounts-v1')).length),count);
+   await flow.locator('#register-phone').fill('+7 700 123 45 67');await flow.locator('[data-registration-next]').click();
+   await flow.locator('#register-name').evaluate(input=>{input.value='   ';});await flow.locator('[data-registration-next]').click();
+   assert(await flow.locator('#register-name-error').isVisible());assert(await flow.locator('#register-name').isVisible());
+   assert.equal(await flow.evaluate(()=>JSON.parse(localStorage.getItem('hub-accounts-v1')).length),count);
+ });
+ await check('Player card validates required selections, name length and all fields at final confirmation',async()=>{
+   await go('community.html#player-profile');const next=flow.locator('[data-profile-next]');
+   await next.click();assert(await flow.locator('[data-profile-error]').isVisible());
+   await flow.locator('#player-name').fill('A'.repeat(41));await next.click();assert.equal(await flow.locator('#player-name').getAttribute('aria-invalid'),'true');
+   await flow.locator('#player-name').fill('Card Tester');await next.click();await next.click();
+   assert.equal(await flow.locator('#player-genre').getAttribute('aria-invalid'),'true');assert.equal(await flow.locator('#player-style').getAttribute('aria-invalid'),'true');
+   await flow.locator('#player-genre').selectOption('RPG');await flow.locator('#player-style').selectOption('Co-op');await next.click();
+   await flow.locator('#player-name').evaluate(input=>{input.value='   ';});await flow.locator('[data-profile-form] [type=submit]').click();assert(await flow.locator('#player-name').isVisible());assert(await flow.locator('[data-profile-result]').isHidden());
+   await flow.locator('#player-name').fill('Card Tester');await next.click();await next.click();await flow.locator('[data-profile-form] [type=submit]').click();await flow.locator('[data-profile-result]').waitFor({state:'visible'});
+   await flow.locator('[data-profile-restart]').click();assert(await flow.locator('[data-profile-result]').isHidden());
+ });
+ await check('Dynamic local-player dialog and login enforce JS-only name/password rules',async()=>{
+   await go('index.html');await flow.locator('[data-open-profiles]').click();const count=await flow.locator('[data-switch-profile]').count();
+   for(const name of ['   ','!!!','A'.repeat(25),'Final Tester']) {
+     await flow.locator('#profile-name').fill(name);await flow.locator('#create-profile [type=submit]').click();assert.match(await flow.locator('.profile-error').textContent(),/\S/);assert.equal(await flow.locator('[data-switch-profile]').count(),count);
+   }
+   await flow.locator('#profiles-dialog [data-close-hub-dialog]').click();
+   await go('login.html');await flow.locator('#login-email').fill('final.tester@example.com');await flow.locator('#login-password').fill('weak');await flow.locator('#login-form [type=submit]').click();assert(await flow.locator('#login-password-error').isVisible());
+   await flow.locator('#login-password').fill('DemoPlay1!');await flow.locator('#login-form [type=submit]').click();await flow.waitForURL('**/profile.html');
  });
  await check('Real GamerPower API loads current items through browser CORS',async()=>{
    await go('giveaways.html');await flow.locator('.giveaway-card').first().waitFor({timeout:25000});
