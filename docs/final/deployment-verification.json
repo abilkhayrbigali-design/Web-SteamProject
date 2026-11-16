@@ -1,98 +1,98 @@
 {
-  "date": "2026-11-16T05:34:50.721859+00:00",
+  "date": "2026-11-16T11:55:33.450482+00:00",
   "url": "https://chinusoid.github.io/Web-SteamProject/",
-  "commit": "714f40dc923005aadbd8fc1d0c8d925fe1b2e108",
-  "workflow": "https://github.com/chinusoid/Web-SteamProject/actions/runs/43810912185",
+  "commit": "7f1e45e0a9ac8391e65c3e2e22e0a70e979acddd",
+  "workflow": "https://github.com/chinusoid/Web-SteamProject/actions/runs/43861886458",
   "files": [
     {
       "file": "about.html",
       "status": 200,
       "matches_local": true,
-      "sha256": "878fdc88be53ac7bb74f21a82b86952de19c76d390b86f3d9ce59b124ef08451"
+      "sha256": "e0ed8171d9a74dc0e7d6eaf965ed9b266e2a34967022c09a01b980fb62c0fb16"
     },
     {
       "file": "categories.html",
       "status": 200,
       "matches_local": true,
-      "sha256": "9ff2fcf9c59eb6ecdd9dd08ad8549939dafd6d7f66c413f6fdb18490bbf24a8d"
+      "sha256": "f94224d16272284166bfaa1605150f447d27d467d3d4ac47bd5785397d9e63ff"
     },
     {
       "file": "community.html",
       "status": 200,
       "matches_local": true,
-      "sha256": "f26612e8a328074640e5928dd41953643e7b757c8d54eaa1110aa4f16f08ade0"
+      "sha256": "d5b1d9d7b74a258ae1a2778d6d778f9651e86a53ad1b7577087aacc42f43ee56"
     },
     {
       "file": "contact.html",
       "status": 200,
       "matches_local": true,
-      "sha256": "4e2526b2e149fb5e699289216799d89aa58de7a9e14f89d248a4a6333e1a78d0"
+      "sha256": "4a56b604cdacb4e5d4a9c45324d05c896a74e7143d1cfcf0abd83bc3c5afe2cf"
     },
     {
       "file": "featured.html",
       "status": 200,
       "matches_local": true,
-      "sha256": "2b0749afa19f3695db351f304233b4e615d7548a9be60101cb63150ab75bf341"
+      "sha256": "1acc077553b8a57f0495c619f29470c1217a288c42e19f5061bc5c5493ad4701"
     },
     {
       "file": "games.html",
       "status": 200,
       "matches_local": true,
-      "sha256": "a94027d3682c53f26a56fb258d69a8d90a99f67e7f29afb52fa5ce5ca17dfd60"
+      "sha256": "622f24a6b5ccf11dff44e60c7594e1d424525fe3226362048fafc91b5fc21bbf"
     },
     {
       "file": "giveaways.html",
       "status": 200,
       "matches_local": true,
-      "sha256": "0046b8a067496d883e6b232025429f98341db8d99e79b0a4c0085e91ef8bd782"
+      "sha256": "3731b27936542bd931f3e0081639381c69404d3f9b27e085498a06d1a7522565"
     },
     {
       "file": "index.html",
       "status": 200,
       "matches_local": true,
-      "sha256": "570be9f0d09b13cc93dcb0631b613e2074a640ca0b2ae012df4a28ead86fe802"
+      "sha256": "ff1f0fbec84c20ec41d28fe146b1a5cddb19062daf027cbf8153f81b399325f3"
     },
     {
       "file": "library.html",
       "status": 200,
       "matches_local": true,
-      "sha256": "a2078522c1be27fe8fc6d184a605d6b1f2f8a99e633f11243c0531f199a9a6c7"
+      "sha256": "468edad082161b960cc08d99b3f46e9440d3d00547ded638d9f16033b8120827"
     },
     {
       "file": "login.html",
       "status": 200,
       "matches_local": true,
-      "sha256": "69733bcbec7180510585fc457f9193b2b49eeed1df243850886374c76d37dd70"
+      "sha256": "8450e0269a72c9ded71ccdb8b59968314e79e338fb896b6282e8a9e97e30294d"
     },
     {
       "file": "news.html",
       "status": 200,
       "matches_local": true,
-      "sha256": "db149433700d39e0da960fe1dbb0b63f5a9de7dcc7a198d3a2d1b6cd27c44f8e"
+      "sha256": "e1576ddab13e87b6d8084cdf15177496ca14ed4e764608582289d95713703eb3"
     },
     {
       "file": "profile.html",
       "status": 200,
       "matches_local": true,
-      "sha256": "20fcfb14886e5db838f64fff9c1fe5186e1587a7f6a9d9843fa7185a05f898f3"
+      "sha256": "836ac55722f28bac18600ac0732d1fe59cd04f28c396bf488262df65b09201eb"
     },
     {
       "file": "responsive.html",
       "status": 200,
       "matches_local": true,
-      "sha256": "213a354a117905a310232bcb3d999059e0aff36cb0c65deb8c784e754f906422"
+      "sha256": "c4f104f72d80b72236465dc17699f1383cebb5426a57865f92d88d19d176d2a9"
     },
     {
       "file": "js/assignment5.js",
       "status": 200,
       "matches_local": true,
-      "sha256": "5bbb37aef8c55d867c1cb80b405e13f0dd5110245714fee720c32657dffdffd2"
+      "sha256": "6f30ae4ee5386eae7060faaebf61c4cbc52d51ad2e0395e5af9fe3e45962e9f1"
     },
     {
       "file": "js/auth.js",
       "status": 200,
       "matches_local": true,
-      "sha256": "824ee792687d8979de70e0cbd661faf43269c8cb4fafbb4f8170fbb529fbdfc7"
+      "sha256": "0e7a2f0da4090a149eb6ecf710fbd9603ee2aa265c3ec196c672fd94495ac4a3"
     },
     {
       "file": "js/final.js",
@@ -110,13 +110,19 @@
       "file": "js/site.js",
       "status": 200,
       "matches_local": true,
-      "sha256": "e5e73f0aea3b38f9d0cd86a040eb3a2406440f638d4e45e03eac9ebe671ab6d9"
+      "sha256": "990981fd8c5e2c7063cf214177105f729b30fd1a3cb1a4ff99eb9f41bb5c0739"
     },
     {
       "file": "js/theme-init.js",
       "status": 200,
       "matches_local": true,
       "sha256": "957a1d2225859f4ce64d8e952ff8bed1c1945744c6b29a0790d975ffd09b171c"
+    },
+    {
+      "file": "js/validation.js",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "ee073f0758d18f929e3a309a3feec7793a23af75c9b12e88939414c138cba0cc"
     },
     {
       "file": "css/final.css",
@@ -317,10 +323,16 @@
       "sha256": "39a546ea9ad97f8bfaf5d3e0e8f8556adb415e470e59007ada9759dce472adaa"
     },
     {
+      "file": "vendor/jquery/LICENSE.txt",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "d4db9ebe6f29f5168eac45ad713f055623ac5d0dcd5ba92da23d650ae012020d"
+    },
+    {
       "file": "script.js",
       "status": 200,
       "matches_local": true,
-      "sha256": "f7184bd6f75dfe5323b4192adf44a0413c41777ad8516ef4241d4f293487d112"
+      "sha256": "c6a35a6d37380805ed4ec4f63732f0ba6a217cb646716f651a2d27911702515a"
     },
     {
       "file": "audio/notification.wav",
