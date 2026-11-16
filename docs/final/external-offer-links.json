@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-16T15:48:13.185821+00:00",
+  "results": [
+    {
+      "platform": "pc",
+      "offer": "Knightica (Epic Games) Giveaway",
+      "url": "https://www.gamerpower.com/knightica-epic-games-giveaway",
+      "status": 200
+    },
+    {
+      "platform": "steam",
+      "offer": "RUNZ Playtest Steam Key Giveaway",
+      "url": "https://www.gamerpower.com/runz-playtest-steam-key-giveaway",
+      "status": 200
+    },
+    {
+      "platform": "epic-games-store",
+      "offer": "Knightica (Epic Games) Giveaway",
+      "url": "https://www.gamerpower.com/knightica-epic-games-giveaway",
+      "status": 200
+    },
+    {
+      "platform": "gog",
+      "state": "No active giveaways"
+    }
+  ]
+}

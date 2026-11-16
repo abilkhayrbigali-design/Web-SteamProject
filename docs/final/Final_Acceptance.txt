@@ -1,0 +1,54 @@
+STEAM GAME HUB - FINAL PUBLISHED-SITE ACCEPTANCE
+Team Eggs | SE-2507 | 16 November 2026
+
+Live website: https://chinusoid.github.io/Web-SteamProject/
+Repository: https://github.com/chinusoid/Web-SteamProject
+Verified application commit: aaa95df5cc2f03fbdcfac148bbdafdbf7b6c2233
+Successful application deployment: https://github.com/chinusoid/Web-SteamProject/actions/runs/43900092438
+
+RESULT: 33/33 acceptance scenario groups PASS directly against the published GitHub Pages origin.
+Uncaught application JavaScript errors: 0. Broken own-origin HTTP responses: 0.
+13 pages x 3 widths (375/768/1440) x 2 themes = 78 responsive combinations.
+Published asset/link crawl: 61 unique resources and 85 anchor links.
+Source comparison: 56/56 published app/assets return HTTP 200 and match the prepared files.
+
+REQUIREMENTS
+Responsiveness: PASS - Flexbox/Grid/Bootstrap, all pages in both themes and representative screenshot review.
+Hosting: PASS - live HTTPS GitHub Pages site, public repository and working relative routes.
+Light/dark: PASS - all page toggles, persistence, reload/navigation and cross-tab sync.
+Design/UX: consistent game-store theme, artwork, labels/focus/skip links and meaningful controls.
+Account simulation: PASS - signup, credentials, local password verifier, profile details and logout.
+Validation: PASS - JS-only rules, novalidate on static/generated forms, inline feedback and final-step rechecks.
+Search/filtering: PASS - text, genre/budget, autocomplete mouse/keyboard, category links, saved filters and reset.
+Animations: PASS - hover/transition, progress/counters, spinner/toasts and reduced motion.
+API: PASS - real PC, Steam, Epic and GOG requests; loading, search, refresh, error, retry, timeout, invalid response, empty state, cache and rapid switching.
+Cohesion/code organization: game discovery + player collection + live offers; shared source modules and local assets.
+Presentation preparation: 4:45 plan, all four team roles and backup screenshots included. Live speaking/rehearsal is performed by the team.
+
+CONTROL COVERAGE
+Shared mobile menu, theme and player dialog on every applicable page.
+All homepage carousel selectors/arrows; all 18 selectors and next/previous in both galleries.
+All four FAQs, newsletter open/close/Escape, all five community topic previews.
+Autocomplete, submitted search, all six genre links.
+All nine catalogue game buttons: cancel, confirm, rate, clear rating, return/remove; wallet and insufficient-funds checks.
+Local player creation/switching, collection isolation and another-tab updates.
+Clock, visible background cycle, sound completion, counters, copy-to-clipboard and keyboard focus.
+
+FINAL FIXES
+1. Background cycling now changes the visible background; switching theme restores the palette consistently.
+2. API loading retains its status while searching and clears old platform cards. Cancelled/stale requests cannot replace current results.
+3. Community topic cards open real local previews. Links claiming nonexistent social channels were replaced by actual hub destinations.
+
+API AT CHECK TIME
+https://www.gamerpower.com/api/giveaways?platform=pc&sort-by=date -> HTTP 200, 99 items.
+https://www.gamerpower.com/api/giveaways?platform=steam&sort-by=date -> HTTP 200, 29 items.
+https://www.gamerpower.com/api/giveaways?platform=epic-games-store&sort-by=date -> HTTP 200, 3 items.
+https://www.gamerpower.com/api/giveaways?platform=gog&sort-by=date -> HTTP 201, 0 items.
+GOG returned the documented no-active-giveaways response (201); this is a valid empty state. Representative offer pages for PC/Steam/Epic also returned HTTP 200.
+
+SUBMIT THESE THREE FILES
+SteamGameHub_SE2507_FinalProject.zip
+SteamGameHub_SE2507_Report.pdf
+SteamGameHub_SE2507_Links.txt
+
+The ZIP includes runnable source, PDF/TXT, acceptance evidence, presentation notes and backup screenshots. Each student uploads the three required files to Moodle FINAL EXAM; publishing does not submit to Moodle.

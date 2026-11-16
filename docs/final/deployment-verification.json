@@ -1,8 +1,8 @@
 {
-  "date": "2026-11-16T11:55:33.450482+00:00",
+  "date": "2026-11-16T15:48:10.001541+00:00",
   "url": "https://chinusoid.github.io/Web-SteamProject/",
-  "commit": "7f1e45e0a9ac8391e65c3e2e22e0a70e979acddd",
-  "workflow": "https://github.com/chinusoid/Web-SteamProject/actions/runs/43861886458",
+  "commit": "aaa95df5cc2f03fbdcfac148bbdafdbf7b6c2233",
+  "workflow": "https://github.com/chinusoid/Web-SteamProject/actions/runs/43900092438",
   "files": [
     {
       "file": "about.html",
@@ -20,7 +20,7 @@
       "file": "community.html",
       "status": 200,
       "matches_local": true,
-      "sha256": "d5b1d9d7b74a258ae1a2778d6d778f9651e86a53ad1b7577087aacc42f43ee56"
+      "sha256": "a7f7db795471c7fa0a24c53ec9329990f8e76ce49a5a779c16ed32d6488bfd13"
     },
     {
       "file": "contact.html",
@@ -98,7 +98,7 @@
       "file": "js/final.js",
       "status": 200,
       "matches_local": true,
-      "sha256": "2ecfc0ee149fa52db30c0ee22f332b51a28afe44bbc6b475e22e8fe856de6e7a"
+      "sha256": "6c2e9d037010bf824ffcce22236861f348bdfcf33a084200c18327aaf7e2c72d"
     },
     {
       "file": "js/games-data.js",
@@ -110,7 +110,7 @@
       "file": "js/site.js",
       "status": 200,
       "matches_local": true,
-      "sha256": "990981fd8c5e2c7063cf214177105f729b30fd1a3cb1a4ff99eb9f41bb5c0739"
+      "sha256": "b12889c822d4dc81360bf0c84aad7f2892025aedd16121be2ca2ed576e75160a"
     },
     {
       "file": "js/theme-init.js",
@@ -128,7 +128,7 @@
       "file": "css/final.css",
       "status": 200,
       "matches_local": true,
-      "sha256": "7f001235a1a5d93fc90146135bc4417ed6ba330fab137096c954febb988ce247"
+      "sha256": "fd5e7c49e2a831bbae778245c72a316b5456a44985065cd5101c846e328dd0d9"
     },
     {
       "file": "css/responsive.css",

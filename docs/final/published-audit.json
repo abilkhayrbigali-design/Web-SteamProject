@@ -1,0 +1,90 @@
+{
+  "date": "2026-11-16T15:49:59.326Z",
+  "baseURL": "https://chinusoid.github.io/Web-SteamProject",
+  "results": [
+    {
+      "name": "Published internal links, anchors, images, scripts, styles and audio resolve",
+      "passed": true
+    },
+    {
+      "name": "Every page exposes working theme, mobile navigation and player-dialog controls",
+      "passed": true
+    },
+    {
+      "name": "Homepage previous/next and every featured pagination button select the correct game",
+      "passed": true
+    },
+    {
+      "name": "Both galleries: all 18 slide selectors, next/previous and announcements work",
+      "passed": true
+    },
+    {
+      "name": "All FAQ controls and newsletter open/close/Escape behavior work",
+      "passed": true
+    },
+    {
+      "name": "Every community topic opens/closes its own content and related links are relevant",
+      "passed": true
+    },
+    {
+      "name": "Autocomplete mouse/keyboard, submitted search and all six category links work",
+      "passed": true
+    },
+    {
+      "name": "All nine game purchase/cancel, ratings/clear and return buttons work",
+      "passed": true
+    },
+    {
+      "name": "Creating/switching players isolates collections and synchronizes another tab",
+      "passed": true
+    },
+    {
+      "name": "Clock, visible background change, sound, counters and clipboard share work",
+      "passed": true
+    },
+    {
+      "name": "Real public API loads PC, Steam, Epic and GOG; search/filter and offer links work",
+      "passed": true
+    },
+    {
+      "name": "API loading, rapid platform changes and stale responses keep correct platform data",
+      "passed": true
+    },
+    {
+      "name": "API timeout, HTTP failure, malformed response and expired cache have recovery controls",
+      "passed": true
+    },
+    {
+      "name": "Keyboard skip link, focus and reduced-motion/hover behavior are usable",
+      "passed": true
+    }
+  ],
+  "assetInventory": {
+    "uniqueResources": 61,
+    "anchorLinks": 85
+  },
+  "uncaughtJavaScriptErrors": [],
+  "brokenOwnResponses": [],
+  "apiEvidence": [
+    {
+      "url": "https://www.gamerpower.com/api/giveaways?platform=pc&sort-by=date",
+      "status": 200,
+      "items": 99
+    },
+    {
+      "url": "https://www.gamerpower.com/api/giveaways?platform=steam&sort-by=date",
+      "status": 200,
+      "items": 29
+    },
+    {
+      "url": "https://www.gamerpower.com/api/giveaways?platform=epic-games-store&sort-by=date",
+      "status": 200,
+      "items": 3
+    },
+    {
+      "url": "https://www.gamerpower.com/api/giveaways?platform=gog&sort-by=date",
+      "status": 201,
+      "items": 0
+    }
+  ]
+}

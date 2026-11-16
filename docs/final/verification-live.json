@@ -1,0 +1,83 @@
+{
+  "date": "2026-11-16T15:48:35.408Z",
+  "baseURL": "https://chinusoid.github.io/Web-SteamProject",
+  "results": [
+    {
+      "name": "All local HTML, image, script, stylesheet and anchor targets exist; no native form constraints",
+      "passed": true
+    },
+    {
+      "name": "13 connected pages fit desktop, tablet and mobile in both themes without JS errors",
+      "passed": true
+    },
+    {
+      "name": "Theme toggle persists across navigation and refresh",
+      "passed": true
+    },
+    {
+      "name": "Theme stays selected on a different page and after reload",
+      "passed": true
+    },
+    {
+      "name": "Registration validates name, email, phone, password complexity and matching confirmation",
+      "passed": true
+    },
+    {
+      "name": "Profile shows saved details; logout, failed login and successful login redirect work",
+      "passed": true
+    },
+    {
+      "name": "Existing account email cannot be registered a second time",
+      "passed": true
+    },
+    {
+      "name": "Catalogue filters update dynamically, persist and reset; query parameters override saved filters",
+      "passed": true
+    },
+    {
+      "name": "Purchases, personal ratings, wallet limits and library returns still work",
+      "passed": true
+    },
+    {
+      "name": "Support form validates phone and email inline; valid submission stays local",
+      "passed": true
+    },
+    {
+      "name": "Support JS rules reject whitespace, bad email/phone, long text and unchecked consent",
+      "passed": true
+    },
+    {
+      "name": "Newsletter popup validates email in JS, recovers after errors and resets",
+      "passed": true
+    },
+    {
+      "name": "Registration enforces JS email, phone and every password-complexity rule",
+      "passed": true
+    },
+    {
+      "name": "Final signup submission revalidates earlier steps and never saves invalid account data",
+      "passed": true
+    },
+    {
+      "name": "Player card validates required selections, name length and all fields at final confirmation",
+      "passed": true
+    },
+    {
+      "name": "Dynamic local-player dialog and login enforce JS-only name/password rules",
+      "passed": true
+    },
+    {
+      "name": "Real GamerPower API loads current items through browser CORS",
+      "passed": true
+    },
+    {
+      "name": "API failure, cached preview, retry and empty-response states behave correctly",
+      "passed": true
+    },
+    {
+      "name": "Production pages have representative desktop/tablet/mobile screenshots in both modes",
+      "passed": true
+    }
+  ],
+  "uncaughtJavaScriptErrors": []
+}
