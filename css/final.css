@@ -1,0 +1,128 @@
+/* Final project: shared account, discovery and accessible light mode surfaces. */
+.theme-toggle,.account-link { display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:6px 9px; min-height:34px; font-size:11px; color:#d6e9f6; border:1px solid #4a6477; background:#243747; border-radius:3px; white-space:nowrap; }
+.theme-toggle { cursor:pointer; }
+.theme-toggle:hover,.account-link:hover { background:#32536b; color:#fff; }
+.account-tools { gap:9px; }
+.account-tools .profile-button>span[data-profile-name] { max-width:90px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.account-layout { display:grid; grid-template-columns:1.1fr 1fr; gap:64px; align-items:start; padding:30px 0; }
+.account-intro h1,.giveaway-intro h1 { font-size:clamp(36px,4.5vw,62px); line-height:1.05; letter-spacing:-.04em; margin:16px 0 22px; }
+.account-intro>p:not(.eyebrow),.giveaway-intro p:not(.eyebrow) { color:#b9cbd8; font-size:15px; max-width:480px; }
+.account-intro img { width:100%; height:240px; object-fit:cover; margin:20px 0; border-radius:3px; }
+.account-panel { padding:30px; background:#172c3e; border:1px solid #42617a; border-radius:4px; }
+.account-panel h2 { font-size:25px; margin-bottom:18px; }
+.account-panel>p { color:#b9cbd8; }
+.account-panel label { display:block; margin:22px 0 8px; font-size:12px; }
+.account-panel .form-control { min-height:44px; }
+.password-row { display:flex; gap:8px; }
+.password-row input { min-width:0; }
+.account-submit { width:100%; padding:12px; margin-top:22px; font-size:14px; }
+.account-note { margin:26px 0; padding-top:22px; border-top:1px solid #ffffff18; }
+.account-panel .field-error { margin:8px 0; font-size:12px; }
+.profile-hero { display:flex; align-items:center; gap:25px; padding:32px; margin-bottom:24px; background:linear-gradient(110deg,#2a526b,#172c3e); border:1px solid #42617a; }
+.profile-hero h2 { font-size:34px; margin-bottom:7px; overflow-wrap:anywhere; }
+.profile-hero p:last-child { margin:0; color:#b9cbd8; }
+.profile-hero>button { margin-left:auto; }
+.profile-avatar { display:grid; place-items:center; width:90px; height:90px; background:#1a9fff; color:white; font-size:42px; flex-shrink:0; border:3px solid #a3d9ff; }
+.profile-columns { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.account-details dt { color:#95b1c6; font-size:11px; margin-top:17px; }
+.account-details dd { font-size:16px; overflow-wrap:anywhere; margin:4px 0 0; }
+.profile-metrics { display:grid; grid-template-columns:1fr 1fr; gap:25px; margin:30px 0; }
+.profile-metrics>div { display:flex; flex-direction:column; }
+.profile-metrics strong { font-size:32px; color:#8dd4ff; }
+.profile-metrics span { color:#b9cbd8; font-size:12px; }
+.giveaway-intro { display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:50px; margin:15px 0 56px; }
+.giveaway-intro img { width:100%; height:330px; object-fit:cover; border-radius:3px; box-shadow:0 10px 30px #0005; }
+.giveaway-intro .buy-button { margin-top:14px; }
+.api-credit { color:#99ccec; font-size:11px; }
+.giveaway-controls { display:grid; grid-template-columns:1fr 2fr auto; gap:20px; align-items:end; background:#152b3c; padding:20px; }
+.giveaway-controls label { display:block; font-size:12px; margin-bottom:7px; color:#b9cbd8; }
+.giveaway-controls .text-button { min-height:38px; }
+.api-status { margin:22px 0; font-size:12px; color:#a9c2d4; }
+.api-loading { padding:48px; text-align:center; color:#a9c2d4; border:1px solid #42617a; }
+.giveaway-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; }
+.giveaway-card { display:flex; flex-direction:column; background:#172c3e; border:1px solid #42617a; transition:transform .2s,box-shadow .2s; min-width:0; }
+.giveaway-card:hover { transform:translateY(-3px); box-shadow:0 8px 25px #0004; }
+.giveaway-card>img { width:100%; height:auto; aspect-ratio:1.8; object-fit:cover; background:#142536; }
+.giveaway-copy { display:flex; flex-direction:column; padding:21px; flex:1; }
+.giveaway-tag { font-size:10px; letter-spacing:.04em; text-transform:uppercase; color:#89c9ef; }
+.giveaway-copy h3 { font-size:19px; line-height:1.3; margin:0 0 13px; }
+.giveaway-description { font-size:12px; color:#b9cbd8; }
+.giveaway-end { font-size:10px; color:#b9ce9a; margin-top:auto; padding-top:15px; }
+.giveaway-copy a { align-self:flex-start; }
+.api-disclaimer { font-size:11px; color:#9ab2c3; margin:26px 0 0; }
+.api-error { margin-bottom:24px; }
+.final-footer-links { display:flex; flex-wrap:wrap; gap:18px; }
+:focus-visible { outline:3px solid #66c0f4; outline-offset:4px; }
+button,a,input,select,textarea { -webkit-tap-highlight-color:transparent; }
+button,a { transition:color .18s,background-color .18s,box-shadow .18s; }
+[hidden] { display:none !important; }
+
+/* Light mode is deliberately styled for the entire inherited site, not just the new pages. */
+html[data-bs-theme=light] { color-scheme:light; --bs-body-bg:#eff4f8; --bs-body-color:#182e40; --bs-secondary-color:#4e6578; --bs-border-color:#bed0dd; --bs-link-color:#075c95; --bs-link-hover-color:#063b63; --bs-tertiary-bg:#e0eaf2; --bs-info-rgb:7,95,153; }
+[data-bs-theme=light] body.store-page { background:radial-gradient(ellipse at 48% 120px,#d3e9f8 0,#edf4f9 45%,#f5f8fb 85%); color:#182e40; }
+[data-bs-theme=light] .store-page h1,[data-bs-theme=light] .store-page h2,[data-bs-theme=light] .store-page h3 { color:#102b40; }
+[data-bs-theme=light] .store-header,[data-bs-theme=light] .store-footer { background:#e2ecf4; color:#405d73; border-color:#bbcedd; }
+[data-bs-theme=light] .client-strip,[data-bs-theme=light] .brand-sub,[data-bs-theme=light] .wallet-label,[data-bs-theme=light] .team-credit { color:#456177; }
+[data-bs-theme=light] .store-header .navbar-brand,[data-bs-theme=light] .hub-symbol,[data-bs-theme=light] .footer-brand { color:#173e5a; }
+[data-bs-theme=light] .store-header .nav-link { color:#284d69; }
+[data-bs-theme=light] .store-header .nav-link.active { color:#005c9a; }
+[data-bs-theme=light] .profile-button { color:#244f70; }
+[data-bs-theme=light] .wallet strong { color:#345d13; }
+[data-bs-theme=light] .theme-toggle,[data-bs-theme=light] .account-link { background:#fff; color:#244f70; border-color:#9cb8cb; }
+[data-bs-theme=light] .shop-bar { background:linear-gradient(100deg,#d2e6f5,#c6dceb); }
+[data-bs-theme=light] .shop-bar nav a,[data-bs-theme=light] .library-shortcut { color:#183f5a; }
+[data-bs-theme=light] .store-search input,[data-bs-theme=light] .form-control,[data-bs-theme=light] .form-select,[data-bs-theme=light] .catalogue-toolbar input,[data-bs-theme=light] .catalogue-toolbar select { background-color:#fff; color:#15354d; border-color:#87a8bf; }
+[data-bs-theme=light] .store-search input::placeholder,[data-bs-theme=light] .form-control::placeholder { color:#526c80; }
+[data-bs-theme=light] .search-suggestions { background:#fff; border-color:#87a8bf; }
+[data-bs-theme=light] .search-suggestions button { color:#173e5a; }
+[data-bs-theme=light] .search-suggestions button:hover,[data-bs-theme=light] .search-suggestions button[aria-selected=true] { background:#d8ebfa; }
+[data-bs-theme=light] .search-suggestions small { color:#375f18; }
+[data-bs-theme=light] .feature-info,[data-bs-theme=light] .store-card,[data-bs-theme=light] .wallet-banner,[data-bs-theme=light] .profile-hero { background:linear-gradient(135deg,#fff,#dceaf5); }
+[data-bs-theme=light] .feature-info>p,[data-bs-theme=light] .feature-label,[data-bs-theme=light] .review-line span,[data-bs-theme=light] .game-description,[data-bs-theme=light] .wallet-banner p:not(.eyebrow),[data-bs-theme=light] .catalogue-heading>p:last-child,[data-bs-theme=light] .share-hub p { color:#405f76; }
+[data-bs-theme=light] .review-line,[data-bs-theme=light] .store-card .game-genre,[data-bs-theme=light] .eyebrow { color:#075f99; }
+[data-bs-theme=light] .price,[data-bs-theme=light] .feature-bottom strong { color:#173e5a; }
+[data-bs-theme=light] .feature-tags span { background:#c8deed; color:#244c67; }
+[data-bs-theme=light] .feature-overlay h2 { color:#fff; }
+[data-bs-theme=light] .feature-mosaic strong { color:#fff; }
+[data-bs-theme=light] .personal-rating,[data-bs-theme=light] .footer-bottom,[data-bs-theme=light] .store-stats,[data-bs-theme=light] .account-note,[data-bs-theme=light] .legacy-tools { border-color:#bdd0de; }
+[data-bs-theme=light] .rating-legend,[data-bs-theme=light] .rating-options button,[data-bs-theme=light] .curated-label,[data-bs-theme=light] .catalogue-toolbar label,[data-bs-theme=light] .results-line,[data-bs-theme=light] .store-stats span,[data-bs-theme=light] .copy-link code { color:#405f76; }
+[data-bs-theme=light] .rating-options label { color:#6b8294; }
+[data-bs-theme=light] .rating-options label.is-selected { color:#8c6000; }
+[data-bs-theme=light] .store-stats strong { color:#075f99; }
+[data-bs-theme=light] .text-button,[data-bs-theme=light] .refund-button { color:#194968; border-color:#8caec4; background:#edf5fb; }
+[data-bs-theme=light] .text-button:hover { background:#cde6f7; color:#073b5e; }
+[data-bs-theme=light] .buy-button { background:linear-gradient(100deg,#446d15,#2f5610); color:#fff !important; }
+[data-bs-theme=light] .buy-button.is-owned { background:#d4e5ed; color:#28526b !important; }
+[data-bs-theme=light] .catalogue-toolbar,[data-bs-theme=light] .catalogue-empty,[data-bs-theme=light] .account-panel,[data-bs-theme=light] .giveaway-controls,[data-bs-theme=light] .giveaway-card { background:#fff; border-color:#b3cbdc; }
+[data-bs-theme=light] .hub-dialog,[data-bs-theme=light] .subscription-dialog { background:#edf5fb; color:#173e5a; border-color:#8caec4; }
+[data-bs-theme=light] .hub-dialog p,[data-bs-theme=light] .profile-hero p:last-child,[data-bs-theme=light] .account-panel>p,[data-bs-theme=light] .account-intro>p:not(.eyebrow),[data-bs-theme=light] .giveaway-intro p:not(.eyebrow),[data-bs-theme=light] .profile-metrics span,[data-bs-theme=light] .giveaway-controls label,[data-bs-theme=light] .api-status,[data-bs-theme=light] .api-disclaimer,[data-bs-theme=light] .giveaway-description { color:#405f76; }
+[data-bs-theme=light] .account-details dt,[data-bs-theme=light] .giveaway-tag,[data-bs-theme=light] .profile-metrics strong,[data-bs-theme=light] .api-credit { color:#075f99; }
+[data-bs-theme=light] .giveaway-end { color:#3b601e; }
+[data-bs-theme=light] .field-error,[data-bs-theme=light] .profile-error,[data-bs-theme=light] .purchase-error,[data-bs-theme=light] .form-status[data-state=error] { color:#b02132 !important; }
+[data-bs-theme=light] .form-control.is-invalid { border-color:#b02132; }
+[data-bs-theme=light] .profile-option { background:#fff; color:#15354d; }
+[data-bs-theme=light] .profile-option[aria-pressed=true] { background:#cce6f8; }
+[data-bs-theme=light] .profile-option small,[data-bs-theme=light] .checkout-line strong { color:#365f18; }
+[data-bs-theme=light] .sidebar-panel,[data-bs-theme=light] .surface-panel,[data-bs-theme=light] .boxed-section,[data-bs-theme=light] .sidebar-box,[data-bs-theme=light] .newsletter-box,[data-bs-theme=light] .news-hero-card,[data-bs-theme=light] .discussion-item,[data-bs-theme=light] .registration-form { background:#fff; color:#183e59; }
+[data-bs-theme=light] .page-sidebar .nav-link,[data-bs-theme=light] .card-text,[data-bs-theme=light] .card-content p,[data-bs-theme=light] .genre-card p,[data-bs-theme=light] .discussion-meta span,[data-bs-theme=light] .custom-ul a { color:#3d607a; }
+[data-bs-theme=light] .card { --bs-card-bg:#fff; --bs-card-border-color:#b3cbdc; }
+[data-bs-theme=light] .page-banner,[data-bs-theme=light] .info-page .page-banner { background:linear-gradient(120deg,#d1e7f6,#e6f0f8); }
+[data-bs-theme=light] .news-quote { background:#dcecf7; color:#294e68; }
+[data-bs-theme=light] .community-cta { background:linear-gradient(#e2eff8f5,#f5f9fcf5),url('../images/games/elden-ring-screenshot.jpg') center/cover; }
+[data-bs-theme=light] .registration-stepper li,[data-bs-theme=light] .registration-stepper li[aria-current=step],[data-bs-theme=light] .registration-progress,[data-bs-theme=light] .registration-success p { color:#214e6e; }
+[data-bs-theme=light] .registration-stepper li>span { background:#daeaf5; color:#214e6e; }
+[data-bs-theme=light] .registration-stepper li[aria-current=step]>span { background:#176da2; color:#fff; }
+[data-bs-theme=light] .footer-bottom a { color:#194f75; }
+[data-bs-theme=light] .info-page .page-sidebar .sidebar-panel { border-color:#a8c3d8; }
+[data-bs-theme=light] .hub-dialog .dialog-close { color:#294e68; }
+[data-bs-theme=light] .results-line>span { color:#3b601c; }
+[data-bs-theme=light] .btn-outline-info { --bs-btn-color:#075f99; --bs-btn-border-color:#075f99; --bs-btn-hover-bg:#075f99; --bs-btn-hover-color:#fff; }
+[data-bs-theme=light] body:not(.store-page) { background:#eff4f8; color:#182e40; }
+[data-bs-theme=light] body:not(.store-page) header,[data-bs-theme=light] body:not(.store-page) footer,[data-bs-theme=light] .mq-card { background:#e2ecf4; color:#182e40; border-color:#b3cbdc; }
+[data-bs-theme=light] .lead,[data-bs-theme=light] .card-copy>p:not(.eyebrow),[data-bs-theme=light] .section-heading>p { color:#405f76; }
+[data-bs-theme=light] body:not(.store-page) a { color:#075f99; }
+
+@media(min-width:1200px) { .nav-inner { gap:12px; } .store-header .navbar-nav { gap:10px; } .store-header .nav-link { font-size:12px; } .store-header .navbar-brand { font-size:19px; margin-right:0; } .account-tools { gap:7px; } .account-tools .wallet { padding-left:9px; } }
+@media(max-width:900px) { .account-layout { gap:28px; } .giveaway-intro { gap:25px; } .giveaway-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .giveaway-controls { grid-template-columns:1fr 1fr; } .giveaway-controls>button { grid-column:1/-1; } }
+@media(max-width:650px) { .account-layout,.profile-columns,.giveaway-intro { grid-template-columns:1fr; } .account-layout { padding-top:0; gap:24px; } .account-intro img { display:none; } .account-panel { padding:22px; } .profile-hero { flex-wrap:wrap; padding:22px; gap:16px; } .profile-hero h2 { font-size:26px; } .profile-avatar { width:65px; height:65px; font-size:30px; } .profile-hero>button { margin-left:0; } .giveaway-intro { margin-bottom:35px; } .giveaway-intro img { height:220px; } .giveaway-grid { grid-template-columns:1fr; } .giveaway-controls { gap:14px; padding:16px; } .section-top { flex-wrap:wrap; } .account-tools { flex-wrap:wrap; } .account-tools .wallet { margin-left:auto; } .theme-toggle { margin-right:0; } .account-tools .profile-button { margin-left:auto; } }
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms !important; transition-duration:.01ms !important; scroll-behavior:auto !important; } }

@@ -1,0 +1,13 @@
+{
+  "name": "steam-game-hub-final",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Team Eggs SE-2507 final project: responsive game hub with local authentication and GamerPower API.",
+  "scripts": {
+    "test": "node tests/final.cjs",
+    "start": "python -m http.server 4173 --bind 127.0.0.1"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

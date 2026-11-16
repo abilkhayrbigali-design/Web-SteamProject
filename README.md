@@ -1,78 +1,90 @@
-# Assignment 3 - Steam Game Hub
+# Steam Game Hub - Final Project
 
-Team Eggs, SE-2507. Updated from **Assignment_2_Real_Images**.
+Team **Eggs**, group **SE-2507**, Web Technologies I.
 
-## Запуск
+**[Live website](https://chinusoid.github.io/Web-SteamProject/)** · **[Final submission files](https://github.com/chinusoid/Web-SteamProject/releases/tag/v2.0.0-final)**
 
-Распакуйте весь архив и откройте **index.html**. Сборка и установка не нужны.
-Bootstrap 5.3.8, JavaScript, стили и все изображения включены локально: сайт
-работает без интернета. Исходная версия Assignment 2 не изменена.
+A continuation of the team's Assignment 6 game hub: discover games, try virtual purchases, build a local collection, rate games and explore current giveaways. Independent student project; no affiliation with Valve or Steam.
 
-## Выполнение Assignment 3
+## Final features
 
-| Задача | Где смотреть |
+- 13 connected responsive pages; desktop, tablet and mobile.
+- Light/dark mode on every page, saved in localStorage and synchronized across tabs.
+- Three-step signup, credential-based login, profile details and logout.
+- JavaScript validation with inline errors: required fields, email, phone, complex password and matching confirmation. All forms use `novalidate`; no native constraint-validation attributes.
+- Dynamic catalogue search, genre/budget filters, safe highlighting and saved filters.
+- Player-specific virtual $100 wallets, confirmations, purchases, returns and ratings.
+- Public GamerPower API through `fetch`/`async`/`await`: platform filters, current giveaway cards, loading/error/empty/retry and labelled cached preview.
+- Skip links, keyboard controls, focus feedback, accessible dialogs and reduced-motion support.
+
+## Pages
+
+| Page | Purpose |
 | --- | --- |
-| 1. Адаптивная типографика | `responsive.html`, `css/responsive.css`: заголовок 36 / 52 / 68 px, вводный текст 16 / 18 / 20 px |
-| 2. Карточки на чистом CSS | `responsive.html`: ровно три карточки, 1 колонка до 768 px, 2 от 768 px, 3 от 1200 px; Bootstrap на этой странице отсутствует |
-| 3. Bootstrap Grid | Home: две `col-lg-6`; Games, Featured, News, Categories: три `col-lg-4`; `container-fluid`, `row`, `col-sm-*`, `col-md-*`, `col-lg-*` |
-| 4. Отступы | Восемь основных страниц используют `p-*`, `m-*`, `g-*` и адаптивные варианты, например `p-md-4`, `mt-lg-5` |
-| 5. Navbar | Все восемь основных страниц: восемь ссылок, Bootstrap Collapse и `navbar-toggler`, раскрытие от 1200 px |
-| 6. Кнопки | `btn-primary`, `btn-outline-info`, `btn-lg`, `btn-sm`; `btn-group` на Games и Featured |
-| 7. Carousel | About и Community: по девять исходных изображений, индикаторы, стрелки, клавиатура; без автопрокрутки |
-| 8. Cards | Главная: три карточки с изображением, названием и текстом внутри `card-group`; карточки Bootstrap также на остальных страницах |
-| 9. Формы | Contact: `form-control`, `form-select`, `input-group`, checkbox, radio; News: форма подписки |
-| 10. Доступность | Семантические области, alt, labels, контраст, видимый фокус, skip-link, статусы `aria-live`, reduced motion |
+| `index.html` | Featured carousel, game discovery, wallet introduction |
+| `games.html` | Nine-game searchable, filterable catalogue |
+| `library.html` | Active player's collection and returns |
+| `featured.html` | Highlighted games, purchases and ratings |
+| `categories.html` | Genre-based catalogue entry points |
+| `community.html` | Community content, player-card builder, signup, gallery |
+| `news.html` | Sample stories and validated newsletter demonstration |
+| `about.html` | Project purpose, team and imagery |
+| `contact.html` | Validated local support form and FAQs |
+| `responsive.html` | Standalone CSS responsive showcase |
+| `login.html` | Credential check and password visibility control |
+| `profile.html` | Saved account details, activity and logout |
+| `giveaways.html` | Current public GamerPower giveaways |
 
-Требование заменить пользовательские отступы относится к страницам Bootstrap.
-Отдельная `responsive.html` использует собственный CSS, как требует Task 2.
-На основных страницах `css/theme.css` задаёт цвета, изображения и типографику,
-а сетка, компоненты и отступы задаются Bootstrap.
+## Run locally
 
-## Файлы
+No build step needed. From this directory:
 
-- `report/Assignment_3_Report.pdf`: отчёт с целями, всеми задачами, шагами, снимками кода и страниц, результатами проверки и reflection.
-- `report/screenshots/`: снимки девяти страниц при 375, 768 и 1440 px, отдельные снимки компонентов и фрагментов кода.
-- `report/verification.json`: фактические результаты 81 проверки страниц и интерактивных проверок.
-- `IMAGE_SOURCES.md`: исходные сведения об изображениях; все 24 оригинальных файла сохранены без изменения.
-- `vendor/bootstrap/`: локальный Bootstrap 5.3.8 и его лицензия MIT.
+```sh
+python -m http.server 4173 --bind 127.0.0.1
+```
 
-Формы проверяют данные локально и показывают результат; отправки и сохранения нет.
-Цены, новости и показатели сообщества сохранены как демонстрационный контент.
+Open `http://127.0.0.1:4173/`. Use localhost or the hosted HTTPS site for Web Crypto. Bootstrap, jQuery and catalogue artwork are bundled. The API and external offer pages need internet.
 
-## Командная проверка перед защитой
+Create an account under **Community -> Join** using **sample details and a demo password**. No account is pre-seeded. Accounts stay in their browser/origin: localhost accounts do not appear on GitHub Pages. Passwords need at least 8 characters, uppercase, lowercase, a digit and a symbol.
 
-Во footer каждой страницы указаны все четыре участника. Для совместного разбора
-можно распределить пары так (это предложение для подготовки, не запись об авторстве):
+## Data and limits
 
-| Участник | Две страницы | Компоненты для объяснения |
-| --- | --- | --- |
-| Ташкенбаев Нурсултан | Home / Featured | Grid, Cards, Buttons, Navbar |
-| Бигали Абулхаир | Games / Categories | Grid, Buttons, Navbar |
-| Султанкулов Шынгыс | News / Community | Forms, Cards, Carousel, Navbar |
-| Лопаткин Артем | About / Contact | Carousel, Forms, Navbar |
+Frontend authentication simulation, not a production security system. `hub-accounts-v1` stores account records with a salted SHA-256 password verifier. `hub-session-v1` stores the local session. Anyone controlling this browser can inspect/alter data; no backend or cross-device sync exists.
 
-Каждому участнику нужно самостоятельно проверить и уметь объяснить код своих страниц.
+Wallets, owned games and ratings remain compatible with Assignment 6 under `eggs-game-hub-v6`. Navigation preserves balance; refresh refills the wallet to $100. Guest local players and registered accounts are distinct features. Opening an account profile selects its linked player.
 
-## Публикация и сдача
+Support/newsletter forms only simulate feedback; no messages or subscriptions are sent. Catalogue prices and news are sample content. GamerPower offers are external, may expire and are separate from virtual purchases. SessionStorage retains an explicitly labelled offline preview for up to 24 hours.
 
-Обновлённая версия опубликована через GitHub Pages из ветки `main`.
+## Verification
 
-- Сайт: https://chinusoid.github.io/Web-SteamProject/
-- Репозиторий: https://github.com/chinusoid/Web-SteamProject
-- Страница с чистым CSS: https://chinusoid.github.io/Web-SteamProject/responsive.html
+```sh
+npm install
+npx playwright install chromium
+npm test
+```
 
-Публикация новой версии подтверждена GitHub Pages. Ссылка добавлена в PDF-отчёт.
-Отправка в LMS не выполнялась: каждый участник сдаёт PDF, ZIP и ссылку самостоятельно
-согласно требованиям курса.
+The suite starts its own server and uses isolated sample data. `BROWSER_PATH` may point to existing Chromium. The live API test needs internet. Results/screenshots: `docs/final/verification.json`, `docs/final/screenshots/`.
 
-## Для защиты
+Checks cover 13 pages at 375/768/1440 px in both themes, assets/anchors, signup/login/logout/profile, duplicate accounts, filters/persistence, purchases/ratings/refunds, support validation, real API access and failure/retry/empty states. Screenshots are offline presentation backup.
 
-- Media query меняет стили, когда ширина viewport достигает указанного порога.
-- Mobile-first: базовый стиль для телефона; `min-width` расширяет макет.
-- Bootstrap делит строку на 12 долей: `col-lg-6` = половина, `col-lg-4` = треть.
-- `g-4` задаёт промежутки сетки; `p-4` - внутренний отступ; `mt-lg-5` - верхний отступ от large.
-- `data-bs-target` связывает кнопку с `id` раскрывающегося меню или карусели.
-- `aria-expanded` сообщает состояние меню; `aria-current` отмечает текущую страницу.
-- Bootstrap 5.3 использует `card-group`; устаревший `card-deck` не нужен.
+## Team responsibility allocation
 
-Официальная документация: https://getbootstrap.com/docs/5.3/
+| Member | Final responsibilities |
+| --- | --- |
+| Ташкенбаев Нурсултан / Nursultan Tashkenbayev | Design, Store/Featured/Categories, responsiveness and themes |
+| Бигали Абулхаир / Abulkhair Bigali | Catalogue, search, purchases, library and ratings |
+| Султанкулов Шынгыс / Shyngys Sultankulov | Accounts, validation, profile, integration and deployment |
+| Лопаткин Артем / Artem Lopatkin | API, support/news/community content, tests and documentation |
+
+Final roles are allocated for the team and presentation; they do not reconstruct earlier commit authorship. Speaking plan: `docs/final/Presentation_Notes.txt`.
+
+## Submission
+
+Release assets: **ZIP project + PDF report + TXT links**. Each student submits all three to Moodle FINAL EXAM. The guide's example .docx filename conflicts with its explicit PDF-only report rule; this package uses PDF. Publishing does not submit to Moodle.
+
+## Sources
+
+- [GamerPower API](https://www.gamerpower.com/api-read) / [provider attribution](https://www.gamerpower.com/).
+- [Bootstrap](https://getbootstrap.com/docs/5.3/), [jQuery API](https://api.jquery.com/), [GitHub Pages](https://docs.github.com/en/pages).
+- `IMAGE_SOURCES.md` retains artwork credits. Art belongs to its owners; vendor licenses are bundled.
+- Supplied Assignment 6 archive/report and final requirements/presentation guideline.

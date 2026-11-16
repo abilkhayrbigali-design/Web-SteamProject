@@ -1,0 +1,20 @@
+STEAM GAME HUB - FINAL REQUIREMENTS MAP | Eggs | SE-2507
+
+Responsiveness (10): Bootstrap, Flexbox/Grid; 13 pages at 375/768/1440 px, both themes.
+Hosting (5): https://chinusoid.github.io/Web-SteamProject/ ; https://github.com/chinusoid/Web-SteamProject .
+Light/dark (5): js/theme-init.js, js/final.js, css/final.css; localStorage and cross-tab persistence, every page.
+UX/design (20): consistent game-store identity, local relevant artwork, connected navigation, labels/skip links/focus rings, readable palettes.
+Enhanced JS (25): Community signup; js/auth.js account/session/verifier; login.html credential check and redirect; profile.html stored details and logout. JS validation: required fields, email, 10-15 digit phone, complex >=8-character password and matching confirmation. All forms use novalidate; no native constraint attributes. Dynamic catalogue search/genre/budget filters, highlighting, saved filters and empty state.
+Animated UI (5): card lift, image zoom, button transitions, spinner, toasts/progress; reduced-motion support.
+External API (10): GamerPower giveaways, fetch/async-await, loading/error/empty/retry, platform filters, labelled offline preview and attribution. Actual browser CORS fetch verified.
+Cohesion (10): every major feature supports game discovery and player collections.
+Presentation (5): Presentation_Notes.txt with 4:45 plan, all four speakers and backup screenshots. Team must rehearse and deliver the talk.
+Code quality (5): organized HTML, css/, js/, images/, vendor/, tests/, docs/final/; focused shared modules.
+
+Pages: Store, Library, All games, Featured, Categories, Community, News, About, Support, Responsive showcase, Log in, Profile, Live giveaways.
+
+Submit these THREE files:
+SteamGameHub_SE2507_FinalProject.zip
+SteamGameHub_SE2507_Report.pdf
+SteamGameHub_SE2507_Links.txt
+The guide's example .docx filename conflicts with its explicit PDF-only rule. The submission package follows the PDF-only rule.
