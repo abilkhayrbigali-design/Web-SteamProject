@@ -53,7 +53,7 @@ Validation audit and boundary cases: `docs/final/Validation_Audit.txt`. Required
 
 Frontend authentication simulation, not a production security system. `hub-accounts-v1` stores account records with a salted SHA-256 password verifier. `hub-session-v1` stores the local session. Anyone controlling this browser can inspect/alter data; no backend or cross-device sync exists.
 
-Wallets, owned games and ratings remain compatible with Assignment 6 under `eggs-game-hub-v6`. Navigation preserves balance; refresh refills the wallet to $100. Guest local players and registered accounts are distinct features. Opening an account profile selects its linked player.
+Wallets, owned games and ratings remain compatible with Assignment 6 under `eggs-game-hub-v6`. Each player starts with $100: a purchase subtracts the price and a return refunds it. The balance is always $100 minus the games still owned, so a refresh can never add funds. Guest local players and registered accounts are distinct features. Opening an account profile selects its linked player.
 
 Support/newsletter forms only simulate feedback; no messages or subscriptions are sent. Catalogue prices and news are sample content. GamerPower offers are external, may expire and are separate from virtual purchases. SessionStorage retains an explicitly labelled offline preview for up to 24 hours.
 
@@ -79,7 +79,7 @@ Checks cover 13 pages at 375/768/1440 px in both themes, assets/anchors, signup/
 | Султанкулов Шынгыс / Shyngys Sultankulov | Accounts, validation, profile, integration and deployment |
 | Лопаткин Артем / Artem Lopatkin | API, support/news/community content, tests and documentation |
 
-Final roles are allocated for the team and presentation; they do not reconstruct earlier commit authorship. Speaking plan: `docs/final/Presentation_Notes.txt`.
+Speaking plan: `docs/final/Presentation_Notes.txt`.
 
 ## Submission
 

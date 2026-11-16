@@ -67,7 +67,7 @@ document.querySelectorAll('[data-demo-form]').forEach((form) => {
   });
 });
 
-// Task 2: accessible buttons toggle the answers; CSS animates their height.
+// Accessible buttons toggle the answers; CSS animates their height.
 document.querySelectorAll('[data-accordion-button]').forEach((button) => {
   const panel = document.getElementById(button.getAttribute('aria-controls'));
   button.addEventListener('click', () => {
@@ -78,7 +78,7 @@ document.querySelectorAll('[data-accordion-button]').forEach((button) => {
   });
 });
 
-// Task 3: native dialog makes the page inert and supports Escape-to-close.
+// Native dialog makes the page inert and supports Escape-to-close.
 document.querySelectorAll('[data-open-dialog]').forEach((button) => {
   const dialog = document.getElementById(button.dataset.openDialog);
   button.addEventListener('click', () => {
@@ -118,7 +118,7 @@ document.querySelectorAll('[data-subscription-dialog]').forEach((dialog) => {
   dialog.addEventListener('close', () => document.body.classList.remove('dialog-open'));
 });
 
-// Task 4: cycle through a readable dark palette by changing the body's CSS.
+// Cycle through a readable dark palette by changing the body's CSS.
 const backgroundButton = document.querySelector('[data-change-background]');
 if (backgroundButton) {
   const backgrounds = [
@@ -143,7 +143,7 @@ if (backgroundButton) {
   });
 }
 
-// Task 5: show local time immediately, then refresh it once per second.
+// Show local time immediately, then refresh it once per second.
 const clocks = document.querySelectorAll('[data-live-clock]');
 if (clocks.length) {
   const formatter = new Intl.DateTimeFormat('en-US', {

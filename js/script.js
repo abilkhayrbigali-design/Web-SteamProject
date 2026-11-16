@@ -1,14 +1,15 @@
 /* Shared browser-only storefront. Final account simulation lives in js/auth.js. */
 $(document).ready(function () {
   'use strict';
-  console.log('jQuery is ready!');
   const games = window.HUB_GAMES;
   const byId = new Map(games.map(game => [game.id, game]));
   const storageKey = 'eggs-game-hub-v6';
+  const startingBalance = 10000; // Every player starts with $100.00 (stored in cents).
   const money = cents => '$' + (cents / 100).toFixed(2);
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const escapeHTML = value => $('<span>').text(String(value)).html();
-  const newProfile = (name, id) => ({ id, name, balance: 10000, owned: [], ratings: {} });
+  const ownedValue = owned => owned.reduce((sum, id) => sum + byId.get(id).cents, 0);
+  const newProfile = (name, id) => ({ id, name, balance: startingBalance, owned: [], ratings: {} });
   const freshState = () => ({ active: 'player-1', profiles: [newProfile('Player 1', 'player-1')] });
   let state = freshState();
   let storageAvailable = true;
@@ -18,12 +19,18 @@ $(document).ready(function () {
       const saved = JSON.parse(localStorage.getItem(storageKey));
       if (!saved || !Array.isArray(saved.profiles)) return freshState();
       const profiles = saved.profiles.filter(p => p && typeof p.id === 'string' && typeof p.name === 'string')
-        .slice(0, 20).map(p => ({
-          id: p.id, name: p.name.slice(0, 24),
-          balance: Number.isSafeInteger(p.balance) && p.balance >= 0 ? p.balance : 10000,
-          owned: [...new Set((Array.isArray(p.owned) ? p.owned : []).filter(id => byId.has(id)))],
-          ratings: Object.fromEntries(Object.entries(p.ratings || {}).filter(([id, value]) => byId.has(id) && Number.isInteger(value) && value >= 1 && value <= 5)),
-        }));
+        .slice(0, 20).map(p => {
+          const owned = [...new Set((Array.isArray(p.owned) ? p.owned : []).filter(id => byId.has(id)))];
+          return {
+            id: p.id, name: p.name.slice(0, 24),
+            // The balance is derived from the collection: $100 minus the games still owned.
+            // Buying subtracts a price and returning refunds it, so a player can never
+            // hold more than $100 and a refresh cannot create extra funds.
+            balance: Math.max(0, startingBalance - ownedValue(owned)),
+            owned,
+            ratings: Object.fromEntries(Object.entries(p.ratings || {}).filter(([id, value]) => byId.has(id) && Number.isInteger(value) && value >= 1 && value <= 5)),
+          };
+        });
       if (!profiles.length) return freshState();
       return { active: profiles.some(p => p.id === saved.active) ? saved.active : profiles[0].id, profiles };
     } catch {
@@ -43,11 +50,8 @@ $(document).ready(function () {
     }
   }
   state = readState();
-  // Only an actual refresh refills wallets. Normal navigation keeps the current balance.
-  if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
-    state.profiles.forEach(p => { p.balance = 10000; });
-    saveState(state);
-  }
+  // Persist the corrected balances so pages that read storage directly (profile) agree.
+  try { if (storageAvailable && localStorage.getItem(storageKey)) saveState(state); } catch {}
   const profile = () => state.profiles.find(p => p.id === state.active);
 
   $('body').append('<div class="scroll-meter" aria-hidden="true"><span></span></div><div class="hub-toasts" role="status" aria-live="polite" aria-atomic="false"></div>');
@@ -57,7 +61,7 @@ $(document).ready(function () {
     $toast.fadeIn(reducedMotion ? 0 : 180).delay(3600).fadeOut(reducedMotion ? 0 : 300, function () { $(this).remove(); });
   }
 
-  // Task 4: a styled progress bar reflects the scrollable part of the document.
+  // A styled progress bar reflects the scrollable part of the document.
   function updateScrollProgress() {
     const max = document.documentElement.scrollHeight - window.innerHeight;
     $('.scroll-meter > span').css('width', (max > 0 ? Math.min(100, window.scrollY / max * 100) : 0) + '%');
@@ -110,7 +114,7 @@ $(document).ready(function () {
     renderState();
   });
 
-  const $profiles = $(`<dialog class="hub-dialog" id="profiles-dialog" aria-labelledby="profiles-title"><button class="dialog-close" type="button" data-close-hub-dialog aria-label="Close profiles">×</button><p class="eyebrow">MAKE YOURSELF AT HOME</p><h2 id="profiles-title">Choose your player</h2><p>Each local profile has its own wallet, library and ratings.</p><div class="profile-list" data-profile-list></div><form id="create-profile" novalidate><label for="profile-name">Add a player</label><div class="profile-create-row"><input class="form-control" id="profile-name" name="player" placeholder="Player name" autocomplete="off"><button type="submit" class="buy-button">Create</button></div><p class="profile-error" role="status"></p></form><p class="profile-note mt-3 mb-0">Frontend demo · Saved in this browser. Every refresh refills all wallets to $100; games and ratings stay saved.</p></dialog>`).appendTo('body');
+  const $profiles = $(`<dialog class="hub-dialog" id="profiles-dialog" aria-labelledby="profiles-title"><button class="dialog-close" type="button" data-close-hub-dialog aria-label="Close profiles">×</button><p class="eyebrow">MAKE YOURSELF AT HOME</p><h2 id="profiles-title">Choose your player</h2><p>Each local profile has its own wallet, library and ratings.</p><div class="profile-list" data-profile-list></div><form id="create-profile" novalidate><label for="profile-name">Add a player</label><div class="profile-create-row"><input class="form-control" id="profile-name" name="player" placeholder="Player name" autocomplete="off"><button type="submit" class="buy-button">Create</button></div><p class="profile-error" role="status"></p></form><p class="profile-note mt-3 mb-0">Frontend demo · Saved in this browser. Every player starts with $100; returning a game refunds its price.</p></dialog>`).appendTo('body');
   const $checkout = $(`<dialog class="hub-dialog" id="checkout-dialog" aria-labelledby="checkout-title"><button class="dialog-close" type="button" data-close-hub-dialog aria-label="Close checkout">×</button><p class="eyebrow" data-checkout-kicker>ADD TO YOUR COLLECTION</p><h2 id="checkout-title">Get this game</h2><img class="purchase-cover" data-checkout-image alt=""><h3 class="h5" data-checkout-name></h3><p data-checkout-note></p><div class="checkout-line"><span data-checkout-cost-label>Game price</span><span data-checkout-cost></span></div><div class="checkout-line"><span>Your balance</span><span data-checkout-balance></span></div><div class="checkout-line"><span>Balance afterwards</span><strong data-checkout-after></strong></div><p class="purchase-error" role="alert" data-checkout-error></p><form id="checkout-form" novalidate><div class="dialog-actions"><button type="button" class="text-button" data-close-hub-dialog>Cancel</button><button type="submit" class="buy-button" data-checkout-confirm>Confirm purchase</button></div></form></dialog>`).appendTo('body');
   let dialogTrigger;
   let transaction = null;
@@ -311,13 +315,13 @@ $(document).ready(function () {
     $('#checkout-title').text(refund ? 'Return this game?' : game.cents ? 'Make it yours' : 'A new adventure, for free');
     $('[data-checkout-name]').text(game.title);
     $('[data-checkout-image]').attr({ src: game.image, alt: game.title + ' cover artwork' });
-    $('[data-checkout-note]').text(refund ? 'The game will leave your library. Your full virtual purchase price will return to your wallet.' : 'A virtual purchase for ' + p.name + '. Your wallet refills to $100 on refresh. Your collection stays saved.');
+    $('[data-checkout-note]').text(refund ? 'The game will leave your library. Your full virtual purchase price will return to your wallet.' : 'A virtual purchase for ' + p.name + '. Return it any time for a full refund. Your collection stays saved.');
     $('[data-checkout-cost-label]').text(refund ? 'Refund amount' : 'Game price');
     $('[data-checkout-cost]').text(money(game.cents));
     $('[data-checkout-balance]').text(money(p.balance));
     const after = p.balance + (refund ? game.cents : -game.cents);
     $('[data-checkout-after]').text(money(after));
-    $('[data-checkout-error]').text(after < 0 ? 'Not enough demo funds. Pick a cheaper game, return one, or refresh to refill your wallet.' : '');
+    $('[data-checkout-error]').text(after < 0 ? 'Not enough demo funds. Pick a cheaper game or return one you own.' : '');
     $('[data-checkout-confirm]').prop('disabled', after < 0).text(refund ? 'Confirm return' : game.cents ? 'Confirm purchase' : 'Add to library');
     openDialog($checkout, trigger);
   }
@@ -522,7 +526,7 @@ $(document).ready(function () {
   $search.on('blur', closeSuggestions);
   $('.store-search').on('submit', function (event) { if ($catalogue.length) { event.preventDefault(); closeSuggestions(); updateCatalogue(); } });
 
-  // Task 9: swap data-src only when an image enters the viewport, using jQuery.
+  // Swap data-src only when an image enters the viewport, using jQuery.
   $('img[loading="lazy"]:not([data-src])').each(function () {
     $(this).attr('data-src', $(this).attr('src')).removeAttr('src');
   });
@@ -535,7 +539,7 @@ $(document).ready(function () {
     });
   }
   $(window).on('scroll resize', loadVisibleImages);
-  // Task 5: animate counters once, when their section becomes visible.
+  // Animate counters once, when their section becomes visible.
   function animateCounters() {
     $('[data-counter]:not([data-counted])').each(function () {
       if (this.getBoundingClientRect().top >= window.innerHeight) return;
@@ -552,7 +556,7 @@ $(document).ready(function () {
   $(window).on('scroll resize', animateCounters);
   animateCounters();
 
-  // Task 8: copy a share link, switch to a checkmark and show a tooltip/status.
+  // Copy a share link, switch to a checkmark and show a tooltip/status.
   $('[data-copy-link]').on('click', async function () {
     const $button = $(this);
     const text = $('[data-share-url]').text();

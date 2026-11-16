@@ -23,7 +23,7 @@ Search/filtering: PASS - text, genre/budget, autocomplete mouse/keyboard, catego
 Animations: PASS - hover/transition, progress/counters, spinner/toasts and reduced motion.
 API: PASS - real PC, Steam, Epic and GOG requests; loading, search, refresh, error, retry, timeout, invalid response, empty state, cache and rapid switching.
 Cohesion/code organization: game discovery + player collection + live offers; shared source modules and local assets.
-Presentation preparation: 4:45 plan, all four team roles and backup screenshots included. Live speaking/rehearsal is performed by the team.
+Presentation preparation: 4:45 plan, all four team roles and backup screenshots included.
 
 CONTROL COVERAGE
 Shared mobile menu, theme and player dialog on every applicable page.

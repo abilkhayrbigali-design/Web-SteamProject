@@ -19,12 +19,15 @@
   const validation = window.HUB_VALIDATE;
   const {validEmail, validPhone, validPassword} = validation;
   const current = () => accounts().find(a => a.id === read(sessionKey, null)?.accountId) || null;
+  // The password itself is never stored: we keep a random salt and SHA-256(salt + password).
+  // Login hashes the typed password with the same salt and compares the two hashes.
   async function digest(password, salt) {
     if (!window.crypto?.subtle) throw new Error('Open the hosted HTTPS site or use localhost to create and access demo accounts.');
     const bytes = new TextEncoder().encode(salt + ':' + password);
     const hash = await crypto.subtle.digest('SHA-256', bytes);
     return [...new Uint8Array(hash)].map(n => n.toString(16).padStart(2, '0')).join('');
   }
+  // Each account is linked to a storefront player, which owns the wallet, library and ratings.
   function activatePlayer(account) {
     const store = read(storeKey, null);
     if (store && Array.isArray(store.profiles) && store.profiles.some(p => p.id === account.profileId)) {
@@ -48,6 +51,7 @@
     write(sessionKey, {accountId:account.id});
     return account;
   }
+  // Updates the header account link and, on profile.html, fills in the stored account details.
   function refreshUI() {
     const account = current();
     document.querySelectorAll('[data-account-link]').forEach(link => {
@@ -116,6 +120,6 @@
   }
   window.addEventListener('storage', refreshUI);
   window.addEventListener('pageshow', refreshUI);
-  // The storefront's ready handler may refill the wallet after this script runs.
+  // The storefront's ready handler may update the wallet after this script runs.
   document.addEventListener('DOMContentLoaded', () => setTimeout(refreshUI, 50));
 })();

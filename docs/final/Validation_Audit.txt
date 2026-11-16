@@ -1,7 +1,7 @@
 STEAM GAME HUB - JAVASCRIPT VALIDATION AUDIT
 Team Eggs | SE-2507 | 16 November 2026
 
-All important-field rules are defined in js/validation.js and applied by js/site.js, js/auth.js, script.js and js/assignment5.js.
+All important-field rules are defined in js/validation.js and applied by js/site.js, js/auth.js, js/script.js and js/interactions.js.
 HTML supplies structure, labels, autocomplete and inputmode keyboard hints. Every form has novalidate, including the player and checkout forms generated at runtime.
 There are no native required/pattern/minlength/maxlength/min/max/type=email constraints and no HTML data-required/data-validate rules. Application code does not use checkValidity(), reportValidity(), setCustomValidity() or validity.
 

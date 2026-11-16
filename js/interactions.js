@@ -1,4 +1,4 @@
-// Assignment 5, Section 1: DOM manipulation and styling.
+// Shared page interactions: star ratings, keyboard navigation, signup steps and sound.
 
 // Select a group of stars, change their classes and update the feedback text.
 document.querySelectorAll('[data-game-rating]').forEach((rating) => {
@@ -51,7 +51,7 @@ document.querySelectorAll('[data-read-more]').forEach((button) => {
   button.hidden = false;
 });
 
-// Section 2: arrow keys move focus within each navigation, without following links.
+// Arrow keys move focus within each navigation, without following links.
 document.querySelectorAll('nav').forEach((navigation) => {
   navigation.addEventListener('keydown', (event) => {
     if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
@@ -139,7 +139,7 @@ if (catalogueSection) {
   updateCatalogue(false);
 }
 
-// Section 2: the state object calls the supplied callback whenever a step changes.
+// The state object calls the supplied callback whenever a step changes.
 const profileForm = document.querySelector('[data-profile-form]');
 if (profileForm) {
   const panels = [...profileForm.querySelectorAll('[data-profile-step]')];
@@ -235,7 +235,7 @@ if (profileForm) {
   profileForm.hidden = false;
 }
 
-// Section 3: play one local sound at a time, only after a user action.
+// Play one local sound at a time, only after a user action.
 const soundButton = document.querySelector('[data-play-sound]');
 if (soundButton) {
   const audio = document.getElementById('notification-sound');

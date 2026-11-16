@@ -1,4 +1,4 @@
-/* Assignment 6: Steam-inspired storefront, shared by all main pages. */
+/* Steam-inspired storefront, shared by all main pages. */
 :root { --shop-bg:#0d1924; --shop-panel:#172a3b; --shop-blue:#1a9fff; --shop-muted:#9ab0c1; --shop-green:#bee64d; }
 body.store-page { background:radial-gradient(ellipse at 48% 120px,#23435c 0, #142737 32%,#0d1924 69%); color:#e3e9ee; font-family:Arial,Helvetica,sans-serif; font-size:14px; }
 .store-shell { width:min(1200px,calc(100% - 64px)); margin-inline:auto; }
@@ -74,9 +74,9 @@ body.store-page { background:radial-gradient(ellipse at 48% 120px,#23435c 0, #14
 .buy-button:hover { filter:brightness(1.2); }
 .buy-button:disabled { opacity:.65; cursor:default; }
 .buy-button.is-owned { background:#294654; color:#bfd8e6 !important; border-color:#557a8b55; }
-.feature-arrow { position:absolute; z-index:2; top:calc(50% - 30px); width:34px; height:60px; background:linear-gradient(90deg,#0b1725aa,#0b172500); border:0; color:#dce8f0; font-size:44px; font-family:Arial; line-height:1; }
-.feature-arrow.previous { left:-34px; }
-.feature-arrow.next { right:-34px; transform:none; background:linear-gradient(-90deg,#0b1725aa,#0b172500); }
+.feature-arrow { position:absolute; z-index:2; top:calc(50% - 30px); width:32px; height:60px; background:linear-gradient(90deg,#0b1725aa,#0b172500); border:0; color:#dce8f0; font-size:44px; font-family:Arial; line-height:1; }
+.feature-arrow.previous { left:-32px; } /* Fits inside the 32px page gutter (no sideways scroll). */
+.feature-arrow.next { right:-32px; transform:none; background:linear-gradient(-90deg,#0b1725aa,#0b172500); }
 .feature-pagination { display:flex; justify-content:center; gap:5px; margin:16px 0 0; }
 .feature-pagination button { border:0; width:22px; height:5px; border-radius:3px; background:#647382; padding:0; }
 .feature-pagination button[aria-pressed=true] { background:#d6e6f3; }

@@ -1,6 +1,9 @@
+/* Final-project features: light/dark theme toggle, shared footer links and the GamerPower API page. */
 (() => {
   'use strict';
   const root = document.documentElement;
+  // theme-init.js already applied the saved theme before paint; this keeps every toggle
+  // button's icon, label and aria-pressed state in sync with the current theme.
   function updateThemeControls() {
     const light = root.dataset.bsTheme === 'light';
     document.body.style.background = '';
@@ -18,6 +21,7 @@
     try { localStorage.setItem('hub-theme', root.dataset.bsTheme); } catch {}
     updateThemeControls();
   }));
+  // The storage event fires in other open tabs, so switching the theme updates them too.
   window.addEventListener('storage', event => {
     if (event.key === 'hub-theme') { root.dataset.bsTheme = event.newValue === 'light' ? 'light' : 'dark'; updateThemeControls(); }
   });
@@ -41,11 +45,15 @@
   const platform = document.getElementById('giveaway-platform'), search = document.getElementById('giveaway-search');
   const grid = host.querySelector('[data-giveaway-grid]'), status = host.querySelector('[data-api-status]');
   const errorPanel = host.querySelector('[data-api-error]'), loading = host.querySelector('[data-api-loading]');
+  // items: offers from the last response; controller: aborts an outdated request;
+  // generation: increases on every load so a slow, older response is ignored.
   let items = [], controller, generation = 0;
+  // Only HTTPS URLs (optionally limited to given domains) from the API are used in the page.
   const safeURL = (value, fallback, domains) => {
     try { const url = new URL(value); return url.protocol === 'https:' && (!domains || domains.some(d => url.hostname === d || url.hostname.endsWith('.' + d))) ? url.href : fallback; }
     catch { return fallback; }
   };
+  // Builds up to 12 cards with textContent (never innerHTML), filtered by the search box.
   function render() {
     const query = search.value.trim().toLowerCase();
     const visible = items.filter(item => (item.title + ' ' + item.type).toLowerCase().includes(query)).slice(0,12);
@@ -66,6 +74,8 @@
     host.querySelector('[data-api-empty]').hidden = !loading.hidden || visible.length > 0 || !errorPanel.hidden;
     if (errorPanel.hidden && loading.hidden) status.textContent = `Showing ${visible.length} of ${items.length} current giveaways · ${platform.options[platform.selectedIndex].text}`;
   }
+  // Fetches offers for the selected platform: shows a loading state, times out after 12 s,
+  // and on failure shows an error with Retry plus any results cached in the last 24 hours.
   async function load() {
     controller?.abort(); controller = new AbortController();
     const requestController = controller;
@@ -82,6 +92,7 @@
       if (!response.ok) throw new Error('The giveaway service returned an error.');
       const data = await response.json();
       if (currentGeneration !== generation) return;
+      // GamerPower answers 201 with {status: 0} when a platform has no active giveaways.
       if (response.status === 201 || data?.status === 0) items = [];
       else if (!Array.isArray(data)) throw new Error('The giveaway service returned an unexpected response.');
       else items = data.filter(i => i && typeof i.title === 'string' && typeof i.type === 'string');

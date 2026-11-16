@@ -47,7 +47,7 @@ async function check(name, action) {
       assert(target.includes('id="'+m[2]+'"'),file+' broken anchor '+m[0]);
     }
    }
-   for(const file of ['script.js',...(await fs.readdir(path.join(root,'js'))).filter(n=>n.endsWith('.js')).map(n=>'js/'+n)]) {
+   for(const file of [...(await fs.readdir(path.join(root,'js'))).filter(n=>n.endsWith('.js')).map(n=>'js/'+n)]) {
      const source=await fs.readFile(path.join(root,file),'utf8');
      assert(!/\.(?:checkValidity|reportValidity|setCustomValidity)\s*\(|\.validity\b/.test(source),file+' relies on native validation');
    }
@@ -150,6 +150,7 @@ async function check(name, action) {
    await go('games.html');await flow.locator('[data-buy="cyberpunk-2077"]').first().click();await flow.locator('[data-checkout-confirm]').click();
    await flow.locator('#checkout-dialog').waitFor({state:'hidden'});
    assert.equal(await flow.locator('[data-wallet]').textContent(),'$40.01');
+   await flow.reload();assert.equal(await flow.locator('[data-wallet]').textContent(),'$40.01','a refresh must not refill the wallet');
    await flow.locator('[data-buy="elden-ring"]').first().click();assert(!(await flow.locator('[data-checkout-confirm]').isEnabled()));await flow.locator('#checkout-dialog [data-close-hub-dialog]').first().click();
    await flow.locator('[data-game="cyberpunk-2077"] label[for$="-5"]').click();
    await go('library.html');assert.equal(await flow.locator('[data-game="cyberpunk-2077"]:visible').count(),1);await capture('library-desktop');
