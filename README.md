@@ -2,7 +2,7 @@
 
 Team **Eggs**, group **SE-2507**, Web Technologies I.
 
-**[Live website](https://chinusoid.github.io/Web-SteamProject/)** · **[Final submission files](https://github.com/chinusoid/Web-SteamProject/releases/tag/v2.0.1-final)**
+**[Live website](https://chinusoid.github.io/Web-SteamProject/)** · **[Final submission files](https://github.com/chinusoid/Web-SteamProject/releases/tag/v2.0.2-final)**
 
 A continuation of the team's Assignment 6 game hub: discover games, try virtual purchases, build a local collection, rate games and explore current giveaways. Independent student project; no affiliation with Valve or Steam.
 
@@ -26,7 +26,7 @@ A continuation of the team's Assignment 6 game hub: discover games, try virtual 
 | `library.html` | Active player's collection and returns |
 | `featured.html` | Highlighted games, purchases and ratings |
 | `categories.html` | Genre-based catalogue entry points |
-| `community.html` | Community content, player-card builder, signup, gallery |
+| `community.html` | Expandable topic previews, player-card builder, signup, gallery |
 | `news.html` | Sample stories and validated newsletter demonstration |
 | `about.html` | Project purpose, team and imagery |
 | `contact.html` | Validated local support form and FAQs |
@@ -63,11 +63,12 @@ Support/newsletter forms only simulate feedback; no messages or subscriptions ar
 npm install
 npx playwright install chromium
 npm test
+npm run test:live
 ```
 
-The suite starts its own server and uses isolated sample data. `BROWSER_PATH` may point to existing Chromium. The live API test needs internet. Results/screenshots: `docs/final/verification.json`, `docs/final/screenshots/`.
+The local suite starts its own server and uses isolated sample data. `npm run test:live` runs both acceptance suites directly against GitHub Pages; `HUB_BASE_URL` can select another deployed base URL. `BROWSER_PATH` may point to existing Chromium. The live API test needs internet. Results/screenshots: `docs/final/verification.json`, `docs/final/screenshots/`.
 
-Checks cover 13 pages at 375/768/1440 px in both themes, assets/anchors, signup/login/logout/profile, duplicate accounts, filters/persistence, purchases/ratings/refunds, support validation, real API access and failure/retry/empty states. Screenshots are offline presentation backup.
+Checks cover 13 pages at 375/768/1440 px in both themes, assets/anchors, signup/login/logout/profile, duplicate accounts, filters/persistence, purchases/ratings/refunds, support validation, real API access and failure/retry/empty states. Screenshots are offline presentation backup. `verification-live.json` and `published-audit.json` record the deployed checks, including all galleries, FAQs, game actions, clipboard/sound, all four API platforms and recovery/race states. Community topics expand useful sample content; related links go to real hub pages.
 
 ## Team responsibility allocation
 

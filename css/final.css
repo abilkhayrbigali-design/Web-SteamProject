@@ -52,6 +52,8 @@
 .api-disclaimer { font-size:11px; color:#9ab2c3; margin:26px 0 0; }
 .api-error { margin-bottom:24px; }
 .final-footer-links { display:flex; flex-wrap:wrap; gap:18px; }
+.discussion-item[data-topic-toggle] { width:100%; text-align:left; }
+.discussion-preview { padding:20px; margin-top:-5px; border:1px solid var(--bs-border-color); background:var(--bs-body-bg); border-radius:4px; }
 :focus-visible { outline:3px solid #66c0f4; outline-offset:4px; }
 button,a,input,select,textarea { -webkit-tap-highlight-color:transparent; }
 button,a { transition:color .18s,background-color .18s,box-shadow .18s; }

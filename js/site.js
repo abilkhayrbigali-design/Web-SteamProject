@@ -128,10 +128,15 @@ if (backgroundButton) {
     { name: 'Forest', color: '#16342e' },
   ];
   let currentBackground = 0;
+  document.addEventListener('hub:theme-change', () => {
+    currentBackground = 0;
+    document.querySelector('[data-background-name]').textContent = 'Midnight';
+    backgroundButton.querySelector('.background-swatch').style.backgroundColor = document.documentElement.dataset.bsTheme === 'light' ? '#eff4f8' : '#101820';
+  });
   backgroundButton.addEventListener('click', () => {
     currentBackground = (currentBackground + 1) % backgrounds.length;
     const background = backgrounds[currentBackground];
-    document.body.style.backgroundColor = document.documentElement.dataset.bsTheme === 'light'
+    document.body.style.background = document.documentElement.dataset.bsTheme === 'light'
       ? ['#eff4f8', '#e7f2fb', '#f1eafa', '#e5f4ed'][currentBackground] : background.color;
     document.querySelector('[data-background-name]').textContent = background.name;
     backgroundButton.querySelector('.background-swatch').style.backgroundColor = background.color;

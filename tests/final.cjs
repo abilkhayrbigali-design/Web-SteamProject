@@ -6,6 +6,7 @@ const path = require('node:path');
 const http = require('node:http');
 const root = path.resolve(__dirname,'..');
 const output = path.join(root,'docs/final');
+const publishedBase = (process.env.HUB_BASE_URL || (process.argv.includes('--published') ? 'https://chinusoid.github.io/Web-SteamProject' : '')).replace(/\/$/,'');
 const results = [], errors = [];
 const mime = {'.html':'text/html','.css':'text/css','.js':'text/javascript','.png':'image/png','.jpg':'image/jpeg','.svg':'image/svg+xml','.webp':'image/webp','.avif':'image/avif','.wav':'audio/wav'};
 const server = http.createServer(async(req,res) => {
@@ -22,7 +23,7 @@ async function check(name, action) {
 (async()=>{
  await fs.mkdir(path.join(output,'screenshots'),{recursive:true});
  await new Promise(r=>server.listen(0,'127.0.0.1',r));
- const origin='http://127.0.0.1:'+server.address().port;
+ const origin=publishedBase || 'http://127.0.0.1:'+server.address().port;
  const browser=await chromium.launch({headless:true,...(process.env.BROWSER_PATH?{executablePath:process.env.BROWSER_PATH}:{})});
  const context=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
  const page=await context.newPage();page.setDefaultTimeout(10000);
@@ -254,7 +255,7 @@ async function check(name, action) {
  });
  assert.deepEqual(errors,[]);
  } finally {
-   await fs.writeFile(path.join(output,'verification.json'),JSON.stringify({date:new Date().toISOString(),results,uncaughtJavaScriptErrors:errors},null,2));
+   await fs.writeFile(path.join(output,publishedBase?'verification-live.json':'verification.json'),JSON.stringify({date:new Date().toISOString(),baseURL:origin,results,uncaughtJavaScriptErrors:errors},null,2));
    await browser.close();server.close();
  }
 })().catch(e=>{console.error(e.stack);process.exitCode=1;server.close();});

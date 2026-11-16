@@ -3,6 +3,8 @@
   const root = document.documentElement;
   function updateThemeControls() {
     const light = root.dataset.bsTheme === 'light';
+    document.body.style.background = '';
+    document.dispatchEvent(new CustomEvent('hub:theme-change'));
     document.querySelectorAll('[data-theme-toggle]').forEach(button => {
       button.setAttribute('aria-pressed', String(light));
       button.setAttribute('aria-label', light ? 'Switch to dark mode' : 'Switch to light mode');
@@ -13,7 +15,6 @@
   updateThemeControls();
   document.querySelectorAll('[data-theme-toggle]').forEach(button => button.addEventListener('click', () => {
     root.dataset.bsTheme = root.dataset.bsTheme === 'light' ? 'dark' : 'light';
-    document.body.style.backgroundColor = '';
     try { localStorage.setItem('hub-theme', root.dataset.bsTheme); } catch {}
     updateThemeControls();
   }));
@@ -29,6 +30,12 @@
     }
     footer.prepend(links);
   }
+  document.querySelectorAll('[data-topic-toggle]').forEach(button => button.addEventListener('click', () => {
+    const panel = document.getElementById(button.getAttribute('aria-controls'));
+    const open = button.getAttribute('aria-expanded') !== 'true';
+    button.setAttribute('aria-expanded',String(open));
+    panel.hidden = !open;
+  }));
   const host = document.querySelector('[data-giveaways]');
   if (!host) return;
   const platform = document.getElementById('giveaway-platform'), search = document.getElementById('giveaway-search');
@@ -56,19 +63,22 @@
       link.href = safeURL(item.gamerpower_url || item.open_giveaway_url,'https://www.gamerpower.com/',['gamerpower.com']);
       content.append(tag,title,description,end,link); article.append(image,content); grid.append(article);
     }
-    host.querySelector('[data-api-empty]').hidden = visible.length > 0 || !errorPanel.hidden;
-    if (errorPanel.hidden) status.textContent = `Showing ${visible.length} of ${items.length} current giveaways · ${platform.options[platform.selectedIndex].text}`;
+    host.querySelector('[data-api-empty]').hidden = !loading.hidden || visible.length > 0 || !errorPanel.hidden;
+    if (errorPanel.hidden && loading.hidden) status.textContent = `Showing ${visible.length} of ${items.length} current giveaways · ${platform.options[platform.selectedIndex].text}`;
   }
   async function load() {
     controller?.abort(); controller = new AbortController();
+    const requestController = controller;
     const currentGeneration = ++generation;
-    const timeout = setTimeout(() => controller.abort(),12000);
+    const timeout = setTimeout(() => requestController.abort(),12000);
     loading.hidden = false; grid.setAttribute('aria-busy','true'); errorPanel.hidden = true;
     host.querySelector('[data-api-empty]').hidden = true; status.textContent = 'Loading current giveaways…';
+    // A platform change must not show another platform's offers under the new label.
+    items = []; grid.replaceChildren();
     const refresh = host.querySelector('[data-refresh-giveaways]'); refresh.disabled = true;
     const selected = platform.value; const cacheKey = 'hub-giveaways-' + selected;
     try {
-      const response = await fetch('https://www.gamerpower.com/api/giveaways?platform=' + encodeURIComponent(selected) + '&sort-by=date', {signal:controller.signal});
+      const response = await fetch('https://www.gamerpower.com/api/giveaways?platform=' + encodeURIComponent(selected) + '&sort-by=date', {signal:requestController.signal});
       if (!response.ok) throw new Error('The giveaway service returned an error.');
       const data = await response.json();
       if (currentGeneration !== generation) return;
@@ -88,7 +98,7 @@
       render();
     } finally {
       clearTimeout(timeout);
-      if (currentGeneration === generation) { loading.hidden = true; grid.removeAttribute('aria-busy'); refresh.disabled = false; }
+      if (currentGeneration === generation) { loading.hidden = true; grid.removeAttribute('aria-busy'); refresh.disabled = false; render(); }
     }
   }
   document.getElementById('giveaway-filters').addEventListener('submit', event => event.preventDefault());
